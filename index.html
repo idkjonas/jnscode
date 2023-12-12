@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title">HTML renderer</title>
+
+    <link href="/dist/output.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+    <script src="https://unpkg.com/emmet-monaco-es/dist/emmet-monaco.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+    <meta name="apple-itunes-app" content="app-id=1498203105">
+
+</head>
+
+<body class="grid h-[100svh] touch-manipulation text-black dark:bg-black bg-gray-200 dark:text-white md:grid-rows-1">
+    <button id="hideEditor"
+        class="fixed bottom-4 left-4 rounded-md bg-gray-500 p-4 px-2 py-1 text-white dark:bg-neutral-700 md:hidden">Toggle
+        editor</button>
+
+    <div class="grid gap-2 md:gap-0 p-2 w-full grid-cols-1 md:grid-cols-[1fr,.75rem,1fr]" id="container">
+        <div id="outer-input"
+            class="grid rounded-md h-full grid-rows-[50px,1fr] overflow-hidden bg-white dark:bg-[#1e1e1e]">
+            <div class="flex items-center justify-between px-2 text-white">
+                <div class="flex items-center">
+
+                    <svg width="25" height="25" viewBox="0 0 256 256" class="ml-2" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect x="27.435" y="127.844" width="142" height="142" transform="rotate(-45 27.435 127.844)"
+                            fill="#E44D26" fill-opacity="0.6" stroke="#E44D26" stroke-width="19" />
+                    </svg>
+
+                    <p class="ml-4 flex items-center max-w-sm text-ellipsis whitespace-nowrap font-['ibm_plex_mono']">
+                        <span
+                            class="min-w-[1ch] max-w-[16ch] overflow-hidden rounded-md text-black focus:bg-gray-200 dark:text-white focus:px-2 focus:ring dark:focus:bg-neutral-700"
+                            id="filename-input" role="textbox" contenteditable>index</span>
+                        <span class="opacity-60 text-black dark:text-white">.html</span>
+                    </p>
+                </div>
+
+                <div class="flex gap-2">
+                    <button
+                        class="rounded-md bg-blue-500 px-2 py-1 text-white transition-transform hover:bg-blue-400 active:scale-90 dark:bg-blue-600 dark:hover:bg-blue-700"
+                        id="downloadFile">
+                        Download
+                    </button>
+
+                    <button
+                        class="rounded-md bg-blue-500 px-2 py-1 text-white transition-transform hover:bg-blue-400 active:scale-90 dark:bg-blue-600  dark:hover:bg-blue-700"
+                        id="importCode">
+                        Import
+                    </button>
+
+                    <button
+                        class="rounded-md bg-green-500 px-2 py-1 text-white transition-transform hover:bg-green-400 active:scale-90 dark:bg-green-600 dark:hover:bg-green-700"
+                        id="shareCode">
+                        Share
+                    </button>
+
+                    <button
+                        class="rounded-md bg-red-500 px-2 py-1 transition-transform hover:bg-red-400 active:scale-90 dark:bg-red-600 dark:hover:bg-red-700"
+                        id="resetBtn">
+                        Clear
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full" id="input"></div>
+        </div>
+        <div id="handle" class="hidden cursor-col-resize items-center md:grid">
+            <span id="handle-span"
+                class="m-1 h-16 w-1 rounded-full bg-gray-500 dark:bg-neutral-500 transition-[height,opacity]"></span>
+        </div>
+        <div id="outer-output">
+            <iframe id="output" class="h-full w-full bg-white rounded-md" referrerpolicy="noreferrer"
+                sandbox="allow-modals allow-downloads allow-scripts allow-forms" credentialless="true"></iframe>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="editor.js"></script>
+    <script src="sharing.js"></script>
+    <script src="resize-window.js"></script>
+</body>
+
+</html>
