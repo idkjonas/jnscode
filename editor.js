@@ -4,6 +4,11 @@ const outerInput = document.getElementById("outer-input");
 const output = document.getElementById("output");
 window.previousURL = null;
 
+function updateOutputToEditorValue() {
+  updateOutput(window.editor.getValue);
+  console.log(window.editor.value);
+}
+
 function updateOutput(to) {
   const url = URL.createObjectURL(new Blob([to], { type: "text/html" }));
   output.src = url;
@@ -106,19 +111,28 @@ require(["vs/editor/editor.main"], () => {
   window.addEventListener("keydown", function (e) {
     if ((e.metaKey || e.ctrlKey) && e.key === "s") {
       e.preventDefault();
-      const value = window.editor.getValue();
-      localStorage.setItem("code", value);
-      updateOutput(value);
-      toast(
-        "Ran code and saved to local storage",
-        "blue-500",
-        "blue-600",
-        "white"
-      );
+
+      runCode();
     }
   });
 
+  function runCode() {
+    const value = window.editor.getValue();
+    localStorage.setItem("code", value);
+    updateOutput(value);
+    toast(
+      "Ran code and saved to local storage",
+      "green-500",
+      "green-600",
+      "white"
+    );
+  }
+
   editor.setValue(localStorage.getItem("code") || "");
+
+  const runBtn = document.getElementById("runBtn");
+
+  runBtn.addEventListener("click", runCode);
 
   function checkColorTheme() {
     if (matchMedia("(prefers-color-scheme: dark)").matches) {

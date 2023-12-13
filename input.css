@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "OpenRunde";
+  src: url("/fonts/OpenRunde-Regular.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "OpenRunde";
+  src: url("/fonts/OpenRunde-Italic.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Italic.woff") format("woff");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "OpenRunde";
+  src: url("/fonts/OpenRunde-Bold.woff2") format("woff2"),
+    url("/fonts/OpenRunde-Bold.woff") format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "OpenRunde";
+  src: url("/fonts/OpenRunde-BoldItalic.woff2") format("woff2"),
+    url("/fonts/OpenRunde-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
