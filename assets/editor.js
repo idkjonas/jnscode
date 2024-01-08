@@ -48,8 +48,6 @@ window.addEventListener("keydown", function (e) {
         e.preventDefault();
         renderPreview();
     }
-
-
 });
 
 
@@ -63,6 +61,17 @@ function renderPreview() {
     }
     window.previousURL = url;
 }
+
+let timer;
+
+window.addEventListener("resize", () => {
+    clearTimeout(timer);
+
+    timer = setTimeout(function () {
+        location.reload();
+
+    }, 100);
+});
 
 document.getElementById("download-btn").addEventListener("click", () => {
     const url = URL.createObjectURL(
