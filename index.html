@@ -47,7 +47,15 @@
                                 @click.outside="open = false" x-show="open" x-transition>
                                 <ul class="space-y-2">
                                     <li>
-                                        <label class="relative inline-flex items-center gap-2 cursor-default" @click="enableTailwind = ! enableTailwind">
+                                        <label class="relative inline-flex items-center gap-2 cursor-default" @click="enableComponentMode = ! enableComponentMode">
+                                            <div class="w-9 h-5 rounded-full after:content-[''] after:bg-white dark:after:bg-zinc-900 after:shadow-lg after:absolute shadow-sm after:top-[2px] after:start-[2px] after:rounded-full after:h-4 after:w-4 after:transition-transform transition-colors "
+                                                :class="{ 'after:translate-x-full bg-black dark:bg-white': enableComponentMode, 'bg-zinc-300 dark:bg-zinc-700': !enableComponentMode }">
+                                            </div>
+                                            <span>Component mode</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label x-show="enableComponentMode" class="relative inline-flex items-center gap-2 cursor-default" @click="enableTailwind = ! enableTailwind">
                                             <div class="w-9 h-5 rounded-full after:content-[''] after:bg-white dark:after:bg-zinc-900 after:shadow-lg after:absolute shadow-sm after:top-[2px] after:start-[2px] after:rounded-full after:h-4 after:w-4 after:transition-transform transition-colors "
                                                 :class="{ 'after:translate-x-full bg-black dark:bg-white': enableTailwind, 'bg-zinc-300 dark:bg-zinc-700': !enableTailwind }">
                                             </div>
@@ -55,7 +63,7 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="relative inline-flex items-center gap-2 cursor-default" @click="enableAlpine = ! enableAlpine">
+                                        <label x-show="enableComponentMode" class="relative inline-flex items-center gap-2 cursor-default" @click="enableAlpine = ! enableAlpine">
                                             <div class="w-9 h-5 rounded-full after:content-[''] after:bg-white dark:after:bg-zinc-900 after:shadow-lg after:absolute shadow-sm after:top-[2px] after:start-[2px] after:rounded-full after:h-4 after:w-4 after:transition-transform transition-colors "
                                                 :class="{ 'after:translate-x-full bg-black dark:bg-white': enableAlpine, 'bg-zinc-300 dark:bg-zinc-700': !enableAlpine }">
                                             </div>
