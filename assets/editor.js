@@ -68,8 +68,8 @@ window.addEventListener("resize", () => {
     clearTimeout(timer);
 
     timer = setTimeout(function () {
+        localStorage.setItem("code", window.editor.getValue());
         location.reload();
-
     }, 100);
 });
 
