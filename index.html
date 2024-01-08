@@ -2,147 +2,189 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="title">HTML renderer</title>
-
-    <link href="dist/output.css" rel="stylesheet" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLR</title>
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
     <script src="https://unpkg.com/emmet-monaco-es/dist/emmet-monaco.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <style>
-        @font-face {
-            font-family: "OpenRunde";
-            src: url("fonts/OpenRunde-Regular.woff2") format("woff2"),
-                url("fonts/OpenRunde-Regular.woff") format("woff");
-            font-weight: 400;
-            font-style: normal
-        }
-
-        @font-face {
-            font-family: "OpenRunde";
-            src: url("fonts/OpenRunde-Medium.woff2") format("woff2"),
-                url("fonts/OpenRunde-Medium.woff") format("woff");
-            font-weight: 500;
-            font-style: normal
-        }
-
-        @font-face {
-            font-family: "OpenRunde";
-            src: url("fonts/OpenRunde-Semibold.woff2") format("woff2"),
-                url("fonts/OpenRunde-Semibold.woff") format("woff");
-            font-weight: 600;
-            font-style: normal
-        }
-
-        @font-face {
-            font-family: "OpenRunde";
-            src: url("fonts/OpenRunde-Bold.woff2") format("woff2"),
-                url("fonts/OpenRunde-Bold.woff") format("woff");
-            font-weight: 700;
-            font-style: normal
-        }
-    </style>
-
+    <link href="https://fonts.cdnfonts.com/css/open-runde" rel="stylesheet">
+    <link rel="stylesheet" href="assets/output.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
-<body
-    class="grid h-[100svh] [font-family:'openRunde','Inter',sans-serif] touch-manipulation text-black dark:bg-black bg-gray-200 dark:text-white md:grid-rows-1">
-    <button id="hideEditor"
-        class="fixed bottom-4 left-4 rounded-md bg-gray-500 p-4 px-2 py-1 text-white dark:bg-neutral-700 md:hidden">Toggle
-        editor</button>
+<body x-data="{ showMobilePreview: false, enableTailwind: false, enableAlpine: false, collapseEditor: false }" class="overflow-hidden touch-manipulation bg-zinc-100 dark:bg-black dark:color-white"
+    style="font-family: 'Open Runde', sans-serif" x-data="body">
 
-    <div class="grid gap-2 md:gap-0 p-2 w-full grid-cols-1 md:grid-cols-[1fr,.75rem,1fr]" id="container">
-        <div id="outer-input"
-            class="grid rounded-md h-full grid-rows-[50px,1fr] overflow-hidden bg-white dark:bg-[#1e1e1e]">
-            <div class="flex items-center justify-between px-2 text-white">
-                <div class="flex items-center">
+    <div class="grid grid-rows-1 h-dvh lg:flex" id="container">
 
-                    <svg width="25" height="25" viewBox="0 0 256 256" class="ml-2" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <rect x="27.435" y="127.844" width="142" height="142" transform="rotate(-45 27.435 127.844)"
-                            fill="#E44D26" fill-opacity="0.6" stroke="#E44D26" stroke-width="19" />
-                    </svg>
+        <div class="grid relative transition-all bg-white dark:bg-[#1e1e1e] width-screen duration-300 overflow-hidden grid-rows-[68px_1fr]"
+            :style="{ width: window.innerWidth > 1024 ? collapseEditor ? '0' : window.innerWidth + 'px' : '100%' }">
 
-                    <p class="ml-4 flex items-center max-w-sm text-ellipsis whitespace-nowrap font-['ibm_plex_mono']">
-                        <span
-                            class="min-w-[1ch] max-w-[16ch] overflow-hidden rounded-md text-black focus:bg-gray-200 dark:text-white focus:px-2 focus:ring dark:focus:bg-neutral-700"
-                            id="filename-input" role="textbox" contenteditable>index</span>
-                        <span class="opacity-60 text-black dark:text-white">.html</span>
-                    </p>
-                </div>
+            <div class="flex items-center justify-between gap-2 px-4">
 
-                <div class="flex gap-2">
-                    <button
-                        class="rounded-md bg-gray-200 px-2 py-1 text-blue-500 font-medium transition-transform hover:bg-gray-300 active:scale-90 dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                        id="downloadFile">
+                <div class="flex items-center gap-3">
+
+                    <div class="items-center hidden gap-2 px-2 cursor-default lg:flex group">
+                        <img id="logo" src="assets/logo.svg" class="w-6 h-6 transition-transform duration-300 group-hover:animate-spin" alt="">
+                        <h1 class="text-xl font-bold text-black dark:text-white">htlm<span class="text-emerald-500">r</span></h1>
+                    </div>
+
+
+                    <!-- <div x-data="{ openSettings: false }">
+
+                        <button
+                            class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-opacity bg-black rounded-md cursor-default size-9 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black h-9"
+                            @click="openSettings = ! openSettings" :disabled="openSettings">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 pointer-events-none">
+                                <path fill-rule="evenodd"
+                                    d="M6.455 1.45A.5.5 0 0 1 6.952 1h2.096a.5.5 0 0 1 .497.45l.186 1.858a4.996 4.996 0 0 1 1.466.848l1.703-.769a.5.5 0 0 1 .639.206l1.047 1.814a.5.5 0 0 1-.14.656l-1.517 1.09a5.026 5.026 0 0 1 0 1.694l1.516 1.09a.5.5 0 0 1 .141.656l-1.047 1.814a.5.5 0 0 1-.639.206l-1.703-.768c-.433.36-.928.649-1.466.847l-.186 1.858a.5.5 0 0 1-.497.45H6.952a.5.5 0 0 1-.497-.45l-.186-1.858a4.993 4.993 0 0 1-1.466-.848l-1.703.769a.5.5 0 0 1-.639-.206l-1.047-1.814a.5.5 0 0 1 .14-.656l1.517-1.09a5.033 5.033 0 0 1 0-1.694l-1.516-1.09a.5.5 0 0 1-.141-.656L2.46 3.593a.5.5 0 0 1 .639-.206l1.703.769c.433-.36.928-.65 1.466-.848l.186-1.858Zm-.177 7.567-.022-.037a2 2 0 0 1 3.466-1.997l.022.037a2 2 0 0 1-3.466 1.997Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <div class="bg-zinc-100/50 border border-black/10 backdrop-blur dark:bg-zinc-900/50 dark:border-white/10 dark:text-white text-black fixed w-60 z-50 top-[3.75rem] font-medium p-4 rounded-md text-sm"
+                            @click.outside="openSettings = false" x-show="openSettings" x-transition>
+                            <ul class="space-y-2">
+                                <li>
+                                    <label class="relative inline-flex items-center gap-2 cursor-default" @click="enableTailwind = ! enableTailwind">
+                                        <div class="w-9 h-5 rounded-full after:content-[''] after:bg-white dark:after:bg-zinc-900 after:shadow-lg after:absolute shadow-sm after:top-[2px] after:start-[2px] after:rounded-full after:h-4 after:w-4 after:transition-transform transition-colors "
+                                            :class="{ 'after:translate-x-full bg-black dark:bg-white': enableTailwind, 'bg-zinc-300 dark:bg-zinc-700': !enableTailwind }">
+                                        </div>
+                                        <span>Tailwind</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="relative inline-flex items-center gap-2 cursor-default" @click="enableAlpine = ! enableAlpine">
+                                        <div class="w-9 h-5 rounded-full after:content-[''] after:bg-white dark:after:bg-zinc-900 after:shadow-lg after:absolute shadow-sm after:top-[2px] after:start-[2px] after:rounded-full after:h-4 after:w-4 after:transition-transform transition-colors "
+                                            :class="{ 'after:translate-x-full bg-black dark:bg-white': enableAlpine, 'bg-zinc-300 dark:bg-zinc-700': !enableAlpine }">
+                                        </div>
+                                        <span>AlpineJS</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <p class="block mt-2 opacity-60">(Not yet implemented)</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+
+                    <button id="download-btn"
+                        class="relative inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-white transition-opacity bg-black rounded-md cursor-default h-9 whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black ">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 pointer-events-none">
+                            <path d="M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z" />
+                            <path
+                                d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z" />
+                        </svg>
                         Download
                     </button>
 
-                    <button
-                        class="rounded-md bg-gray-200 px-2 py-1 text-blue-500 font-medium transition-transform hover:bg-gray-300 active:scale-90 dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                        id="importCode">
-                        Import
-                    </button>
+                    <!-- <div x-data="{ openNotice: false }">
+
+                        <button
+                            class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-white transition-opacity bg-black rounded-md cursor-default dark:text-black whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white h-9"
+                            @mouseover="openNotice = true" @mouseout="openNotice = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 pointer-events-none">
+                                <path d="M12 6a2 2 0 1 0-1.994-1.842L5.323 6.5a2 2 0 1 0 0 3l4.683 2.342a2 2 0 1 0 .67-1.342L5.995 8.158a2.03 2.03 0 0 0 0-.316L10.677 5.5c.353.311.816.5 1.323.5Z" />
+                            </svg>
+                            Share
+                        </button>
+
+                        <div class="bg-zinc-100/50 border border-black/10 backdrop-blur dark:bg-zinc-900/50 dark:border-white/10 dark:text-white text-black fixed z-50 top-[3.75rem] font-medium p-4 rounded-md text-sm"
+                            x-show="openNotice" x-transition>
+                            <span>Coming soon!</span>
+                        </div>
+
+                    </div> -->
+
+                </div>
+
+                <div class="flex items-center gap-2">
+
+
+                    <div x-data="{ openConfirm: false }">
+
+                        <button
+                            class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-opacity bg-red-600 rounded-md cursor-default size-9 whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-red-900 h-9"
+                            @click="openConfirm = ! openConfirm" :disabled="openConfirm">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd"
+                                    d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <div class="bg-zinc-100/50 border border-black/10 lg:w-60 backdrop-blur dark:bg-zinc-900/50 dark:border-white/10 dark:text-white text-black fixed z-50 top-[3.75rem] left-4 lg:left-auto font-medium p-4 rounded-md text-sm"
+                            @click.outside="openConfirm = false" x-show="openConfirm" x-transition>
+                            <p class="mb-2">Are you sure you want to your clear your code?</p>
+                            <button id="clear-btn" @click="openConfirm = false"
+                                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white transition-opacity bg-red-600 rounded-md cursor-default whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-red-900 h-9">
+                                Confirm
+                            </button>
+                        </div>
+
+                    </div>
 
                     <button
-                        class="rounded-md bg-gray-200 px-2 py-1 text-blue-500 font-medium transition-transform hover:bg-gray-300 active:scale-90 dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                        id="shareCode">
-                        Share
-                    </button>
-
-                    <button
-                        class="rounded-md bg-red-500 flex gap-1 items-center px-2 py-1 text-white font-medium transition-transform hover:bg-red-400 active:scale-90 dark:bg-red-600 dark:hover:bg-red-700"
-                        id="resetBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                            <path fill-rule="evenodd"
-                                d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
-                                clip-rule="evenodd" />
+                        class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-white transition-opacity bg-green-600 rounded-md cursor-default whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-green-900 h-9"
+                        @click="renderPreview">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                            <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
                         </svg>
-
-                        Clear
-                    </button>
-
-                    <button id="runBtn" title="You can also press Ctrl+S to run the code"
-                        class="rounded-md bg-green-500 flex gap-1 items-center px-2 py-1 text-white font-medium transition-transform hover:bg-green-400 active:scale-90 dark:bg-green-600 dark:hover:bg-green-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                            <path
-                                d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                        </svg>
-
-
                         Run
-
                     </button>
+
+                </div>
+
+            </div>
+            <div :class="{ 'brightness-50': showMobilePreview }" class="h-full duration-500 transition-[filter]" id="editor"></div>
+        </div>
+
+        <div :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
+            class="fixed flex-grow w-full overflow-hidden transition-transform duration-500 translate-y-full top-[68px] lg:top-0 lg:h-dvh h-[calc(100dvh-68px)] lg:translate-y-0 lg:relative ">
+
+            <div x-data="{ isHovered: false }" class="absolute z-50 items-center hidden -translate-y-1/2 lg:flex top-1/2">
+                <button class="cursor-default opacity-25 hover:opacity-100 duration-300 transition-opacity group w-8 h-[72px] left-0 " @click=" collapseEditor=! collapseEditor"
+                    @mouseenter="isHovered = true" @mouseleave="isHovered = false" @mousedown="isHovered = false">
+                    <div :style="{ transform: collapseEditor ? 'rotatey(.5turn)' : !collapseEditor }" class="flex flex-col items-center w-6 h-6 transition-transform duration-700">
+                        <div class="h-3 w-1 transition-transform bg-black rounded-full duration-300 group-hover:rotate-[15deg]" style="translate: 0 .15rem">
+                        </div>
+                        <div class="h-3 w-1 transition-transform bg-black rounded-full duration-300 group-hover:rotate-[-15deg]" style="translate: 0 -.15rem">
+                        </div>
+                    </div>
+                </button>
+                <div x-show="isHovered" x-transition
+                    class="bg-zinc-100/50 border border-black/10 backdrop-blur dark:bg-zinc-900/50 dark:border-white/10 dark:text-white text-black z-50 top-[3.75rem] font-medium px-3 py-2 rounded-md text-sm"
+                    x-text="collapseEditor ? 'Show editor' : 'Hide editor'">
                 </div>
             </div>
-
-            <div class="w-full" id="input"></div>
-        </div>
-        <div id="handle" class="hidden cursor-col-resize items-center md:grid">
-            <span id="handle-span"
-                class="m-1 h-16 w-1 rounded-full bg-gray-500 dark:bg-neutral-500 transition-[height,opacity]"></span>
-        </div>
-        <div id="outer-output">
-            <iframe id="output" class="h-full w-full bg-white rounded-md" referrerpolicy="noreferrer"
+            <iframe class="w-full h-full bg-white shadow-inner border-zinc-200 dark:border-zinc-800 lg:border-l " id="preview" referrerpolicy="noreferrer"
                 sandbox="allow-modals allow-downloads allow-scripts allow-forms" credentialless="true"></iframe>
         </div>
-    </div>
 
-    <script src="main.js"></script>
-    <script src="editor.js"></script>
-    <script src="sharing.js"></script>
-    <script src="resize-window.js"></script>
+        <button @click="showMobilePreview = ! showMobilePreview"
+            class="fixed z-50 grid py-2 font-medium text-white bg-black border rounded-full shadow-xl lg:hidden place-items-center size-14 max-w-64 dark:bg-white dark:text-black left-4 bottom-4">
+            <template x-if="!showMobilePreview">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+            </template>
+
+            <template x-if="showMobilePreview">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                </svg>
+
+            </template>
+
+        </button>
+
+        <script src="assets/editor.js"></script>
+
+    </div>
 </body>
 
 </html>
