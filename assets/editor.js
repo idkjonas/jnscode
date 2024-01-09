@@ -1,11 +1,45 @@
-require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.26.1/min/vs' } });
-require(['vs/editor/editor.main'], function () {
+// LINK SHARING
+
+const dataParam = new URLSearchParams(window.location.search).get("data");
+
+let decodedDataParam;
+
+if (dataParam !== null && dataParam.trim() !== "") {
+
+    decodedDataParam = atob(padBase64(dataParam).replace(/\-/g, "+").replace(/_/g, "/"));
+
+    function padBase64(input) {
+        var segmentLength = 4;
+        var stringLength = input.length;
+        var diff = stringLength % segmentLength;
+
+        if (!diff) {
+            return input;
+        }
+
+        var padLength = segmentLength - diff;
+        var paddedStringLength = stringLength + padLength;
+        var buffer = input;
+
+        while (padLength--) {
+            buffer += "="
+        }
+
+        return buffer.toString();
+    }
+
+} else {
+    console.log("no data parameter detected!")
+}
+
+require.config({ paths: { "vs": "https://cdn.jsdelivr.net/npm/monaco-editor@0.26.1/min/vs" } });
+require(["vs/editor/editor.main"], function () {
     createEditor();
 });
 
 function createEditor() {
     emmetMonaco.emmetHTML(monaco);
-    var editorContainer = document.getElementById('editor');
+    var editorContainer = document.getElementById("editor");
 
     window.editor = monaco.editor.create(editorContainer, {
         language: "html",
@@ -14,14 +48,24 @@ function createEditor() {
         autoClosingTags: true,
         autoClosingBrackets: true,
         minimap: { enabled: false },
-        lineNumbers: 'off',
+        lineNumbers: "off",
         glyphMargin: false,
         folding: false,
         lineDecorationsWidth: 20,
         lineNumbersMinChars: 0
     });
 
-    editor.setValue(localStorage.getItem("code") || "");
+
+    // Display the data on the page
+    if (dataParam !== null && dataParam.trim() !== "") {
+        console.log("setting to data param")
+        localStorage.setItem("code", decodedDataParam)
+        editor.setValue(decodedDataParam);
+
+    } else {
+        console.log("setting to localstorage or clear")
+        editor.setValue(localStorage.getItem("code") || "");
+    }
 
     function checkColorTheme() {
         if (matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -40,7 +84,6 @@ function createEditor() {
     checkColorTheme();
 
     renderPreview();
-
 }
 
 window.addEventListener("keydown", function (e) {
@@ -49,7 +92,6 @@ window.addEventListener("keydown", function (e) {
         renderPreview();
     }
 });
-
 
 function renderPreview() {
     localStorage.setItem("code", window.editor.getValue());
@@ -95,6 +137,18 @@ document.getElementById("download-btn").addEventListener("click", () => {
     setTimeout(() => URL.revokeObjectURL(url), 10000);
 });
 
+// Function to update the URL with a specific "data" parameter
+document.getElementById("share-btn").addEventListener("click", () => {
+    const newData = window.editor.getValue();
+    const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+    const currentURL = window.location.href.split("?")[0];  // Get the base URL
+    const newURL = encodedNewData ? `${currentURL}?data=${encodedNewData}` : currentURL;
+    navigator.clipboard.writeText(newURL);
+    alert("Copied the link: " + newURL);
+    alert(`Copied link to clipboard, use a service like https://www.shorturl.at to shorten the link`)
+});
+
+
 
 
 document.getElementById("clear-btn").addEventListener("click", () => {
@@ -102,3 +156,5 @@ document.getElementById("clear-btn").addEventListener("click", () => {
     editor.setValue("");
     renderPreview();
 });
+
+
