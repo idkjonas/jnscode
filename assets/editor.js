@@ -139,13 +139,17 @@ document.getElementById("download-btn").addEventListener("click", () => {
 
 // Function to update the URL with a specific "data" parameter
 document.getElementById("share-btn").addEventListener("click", () => {
-    const newData = window.editor.getValue();
-    const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
-    const currentURL = window.location.href.split("?")[0];  // Get the base URL
-    const newURL = encodedNewData ? `${currentURL}?data=${encodedNewData}` : currentURL;
-    navigator.clipboard.writeText(newURL);
-    alert("Copied the link: " + newURL);
-    alert(`Copied link to clipboard, use a service like https://www.shorturl.at to shorten the link`)
+    if (dataParam < 2048) {
+        const newData = window.editor.getValue();
+        const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+        const currentURL = window.location.href.split("?")[0];  // Get the base URL
+        const newURL = encodedNewData ? `${currentURL}?data=${encodedNewData}` : currentURL;
+        navigator.clipboard.writeText(newURL);
+        alert(`Copied link to clipboard, use a service like https://www.shorturl.at to shorten the link`)
+    } else {
+        alert("code too long :(")
+    }
+
 });
 
 
