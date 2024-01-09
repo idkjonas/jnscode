@@ -1,6 +1,4 @@
-// LINK SHARING
-
-const dataParam = new URLSearchParams(window.location.search).get("data");
+const dataParam = new URLSearchParams(window.location.search).get("c");
 
 let decodedDataParam;
 
@@ -56,7 +54,6 @@ function createEditor() {
     });
 
 
-    // Display the data on the page
     if (dataParam !== null && dataParam.trim() !== "") {
         console.log("setting to data param")
         localStorage.setItem("code", decodedDataParam)
@@ -106,15 +103,6 @@ function renderPreview() {
 
 let timer;
 
-window.addEventListener("resize", () => {
-    clearTimeout(timer);
-
-    timer = setTimeout(function () {
-        localStorage.setItem("code", window.editor.getValue());
-        location.reload();
-    }, 100);
-});
-
 document.getElementById("download-btn").addEventListener("click", () => {
     const url = URL.createObjectURL(
         new Blob([window.editor.getValue()], { type: "text/plain" })
@@ -137,23 +125,23 @@ document.getElementById("download-btn").addEventListener("click", () => {
     setTimeout(() => URL.revokeObjectURL(url), 10000);
 });
 
-// Function to update the URL with a specific "data" parameter
 document.getElementById("share-btn").addEventListener("click", () => {
-    if (dataParam.length < 2048) {
-        const newData = window.editor.getValue();
-        const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
-        const currentURL = window.location.href.split("?")[0];  // Get the base URL
-        const newURL = encodedNewData ? `${currentURL}?data=${encodedNewData}` : currentURL;
+    let newData = window.editor.getValue();
+
+    newData = newData.trim();
+
+    const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+
+    if (encodedNewData.length < 2048) {
+        const currentURL = window.location.href.split("?")[0];
+        const newURL = encodedNewData ? `${currentURL}?c=${encodedNewData}` : currentURL;
         navigator.clipboard.writeText(newURL);
-        alert(`Copied link to clipboard, use a service like https://www.shorturl.at to shorten the link`)
+        alert(`Copied link to clipboard`)
     } else {
-        alert("code too long :(")
+        alert(`code too long :(. max length: 2048, your length: ${encodedNewData.length}`)
     }
 
 });
-
-
-
 
 document.getElementById("clear-btn").addEventListener("click", () => {
     localStorage.setItem("code", "");
