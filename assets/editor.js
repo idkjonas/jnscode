@@ -64,7 +64,6 @@ function createEditor() {
         document.getElementById("shared-code-notice").style.display = "flex";
         document.getElementById("clear-btn").style.display = "none";
 
-
     } else {
         editor.setValue(localStorage.getItem("code") || "");
         renderPreview();
