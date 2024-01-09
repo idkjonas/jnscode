@@ -57,17 +57,13 @@ function createEditor() {
         lineNumbersMinChars: 0
     });
 
-    if (hasParam) {
-        window.editor.updateOptions({ readOnly: true })
-    }
-
     if (dataParam !== null && dataParam.trim() !== "") {
-        console.log("setting to data param")
+        window.editor.updateOptions({ readOnly: true })
         localStorage.setItem("code", decodedDataParam)
         editor.setValue(decodedDataParam);
 
     } else {
-        console.log("setting to localstorage or clear")
+        document.getElementById("shared-code-notice").style.display = "flex";
         editor.setValue(localStorage.getItem("code") || "");
     }
 
@@ -150,10 +146,13 @@ document.getElementById("share-btn").addEventListener("click", () => {
 
 });
 
+document.getElementById("edit-code-btn").addEventListener("click", () => {
+    localStorage.setItem("code", window.editor.getValue());
+    window.location = window.location.href.split("?")[0];
+});
+
 document.getElementById("clear-btn").addEventListener("click", () => {
     localStorage.setItem("code", "");
     editor.setValue("");
     renderPreview();
 });
-
-
