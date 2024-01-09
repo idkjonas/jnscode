@@ -62,6 +62,8 @@ function createEditor() {
         localStorage.setItem("code", decodedDataParam)
         editor.setValue(decodedDataParam);
         document.getElementById("shared-code-notice").style.display = "flex";
+        document.getElementById("clear-btn").style.display = "none";
+
 
     } else {
         editor.setValue(localStorage.getItem("code") || "");
