@@ -139,7 +139,7 @@ document.getElementById("download-btn").addEventListener("click", () => {
 
 // Function to update the URL with a specific "data" parameter
 document.getElementById("share-btn").addEventListener("click", () => {
-    if (dataParam < 2048) {
+    if (dataParam.length < 2048) {
         const newData = window.editor.getValue();
         const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
         const currentURL = window.location.href.split("?")[0];  // Get the base URL
