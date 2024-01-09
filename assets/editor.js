@@ -65,6 +65,7 @@ function createEditor() {
 
     } else {
         editor.setValue(localStorage.getItem("code") || "");
+        renderPreview();
     }
 
     function checkColorTheme() {
@@ -83,7 +84,6 @@ function createEditor() {
 
     checkColorTheme();
 
-    renderPreview();
 }
 
 window.addEventListener("keydown", function (e) {
