@@ -61,9 +61,9 @@ function createEditor() {
         window.editor.updateOptions({ readOnly: true })
         localStorage.setItem("code", decodedDataParam)
         editor.setValue(decodedDataParam);
+        document.getElementById("shared-code-notice").style.display = "flex";
 
     } else {
-        document.getElementById("shared-code-notice").style.display = "flex";
         editor.setValue(localStorage.getItem("code") || "");
     }
 
