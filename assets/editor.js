@@ -1,8 +1,12 @@
 const dataParam = new URLSearchParams(window.location.search).get("c");
 
+let hasParam = false;
+
 let decodedDataParam;
 
 if (dataParam !== null && dataParam.trim() !== "") {
+
+    hasParam = true;
 
     decodedDataParam = atob(padBase64(dataParam).replace(/\-/g, "+").replace(/_/g, "/"));
 
@@ -53,6 +57,9 @@ function createEditor() {
         lineNumbersMinChars: 0
     });
 
+    if (hasParam) {
+        window.editor.updateOptions({ readOnly: true })
+    }
 
     if (dataParam !== null && dataParam.trim() !== "") {
         console.log("setting to data param")
