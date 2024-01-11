@@ -1,159 +1,142 @@
-const dataParam = new URLSearchParams(window.location.search).get("c");
+const dataParam = new URLSearchParams(window.location.search).get('c')
 
-let hasParam = false;
+let hasParam = false, decodedDataParam
 
-let decodedDataParam;
+if (dataParam !== null && dataParam.trim() !== '') {
 
-if (dataParam !== null && dataParam.trim() !== "") {
+    hasParam = true
 
-    hasParam = true;
-
-    decodedDataParam = atob(padBase64(dataParam).replace(/\-/g, "+").replace(/_/g, "/"));
+    decodedDataParam = atob(padBase64(dataParam).replace(/\-/g, '+').replace(/_/g, '/'))
 
     function padBase64(input) {
-        var segmentLength = 4;
-        var stringLength = input.length;
-        var diff = stringLength % segmentLength;
+        var segmentLength = 4
+        var stringLength = input.length
+        var diff = stringLength % segmentLength
 
         if (!diff) {
-            return input;
+            return input
         }
 
-        var padLength = segmentLength - diff;
-        var paddedStringLength = stringLength + padLength;
-        var buffer = input;
+        var padLength = segmentLength - diff
+        var paddedStringLength = stringLength + padLength
+        var buffer = input
 
-        while (padLength--) {
-            buffer += "="
-        }
-
-        return buffer.toString();
+        while (padLength--) { buffer += '=' }
+        return buffer.toString()
     }
+} else console.log('no data parameter detected!')
 
-} else {
-    console.log("no data parameter detected!")
-}
 
-require.config({ paths: { "vs": "https://cdn.jsdelivr.net/npm/monaco-editor@0.26.1/min/vs" } });
-require(["vs/editor/editor.main"], function () {
-    createEditor();
-});
+require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.26.1/min/vs' }, })
+require(['vs/editor/editor.main'], function () { createEditor() })
 
 function createEditor() {
-    emmetMonaco.emmetHTML(monaco);
-    var editorContainer = document.getElementById("editor");
+    emmetMonaco.emmetHTML(monaco)
+    var editorContainer = document.getElementById('editor')
 
     window.editor = monaco.editor.create(editorContainer, {
-        language: "html",
+        language: 'html',
         automaticLayout: true,
-        fontSize: "13px",
+        fontSize: '13px',
         autoClosingTags: true,
         autoClosingBrackets: true,
         minimap: { enabled: false },
-        lineNumbers: "off",
+        lineNumbers: 'off',
         glyphMargin: false,
         folding: false,
         lineDecorationsWidth: 20,
-        lineNumbersMinChars: 0
-    });
+        lineNumbersMinChars: 0,
+    })
 
-    if (dataParam !== null && dataParam.trim() !== "") {
+    if (dataParam !== null && dataParam.trim() !== '') {
         window.editor.updateOptions({ readOnly: true })
-        localStorage.setItem("code", decodedDataParam)
-        editor.setValue(decodedDataParam);
-        document.getElementById("shared-code-notice").style.display = "flex";
-        document.getElementById("open-clear-btn").style.display = "none";
+        localStorage.setItem('code', decodedDataParam)
+        editor.setValue(decodedDataParam)
+        document.getElementById('shared-code-notice').style.display = 'flex'
+        document.getElementById('open-clear-btn').style.display = 'none'
 
     } else {
-        editor.setValue(localStorage.getItem("code") || "");
-        renderPreview();
+        editor.setValue(localStorage.getItem('code') || '')
+        renderPreview()
     }
 
     function checkColorTheme() {
-        if (matchMedia("(prefers-color-scheme: dark)").matches) {
-            monaco.editor.setTheme("vs-dark");
-        } else {
-            monaco.editor.setTheme("vs");
-        }
+        matchMedia('(prefers-color-scheme: dark)').matches ?
+            monaco.editor.setTheme('vs-dark')
+            :
+            monaco.editor.setTheme('vs')
     }
 
     window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", () => {
-            checkColorTheme();
-        });
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', checkColorTheme())
 
-    checkColorTheme();
-
+    checkColorTheme()
 }
 
-window.addEventListener("keydown", function (e) {
-    if ((e.metaKey || e.ctrlKey) && e.key === "s") {
-        e.preventDefault();
-        renderPreview();
+window.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault()
+        renderPreview()
     }
-});
+})
 
 function renderPreview() {
-    localStorage.setItem("code", window.editor.getValue());
+    localStorage.setItem('code', window.editor.getValue())
 
-    const url = URL.createObjectURL(new Blob([editor.getValue()], { type: "text/html" }));
-    document.getElementById("preview").src = url;
-    if (window.previousURL) {
-        URL.revokeObjectURL(window.previousURL);
-    }
-    window.previousURL = url;
+    const url = URL.createObjectURL(
+        new Blob([editor.getValue()], { type: 'text/html' }),
+    )
+    document.getElementById('preview').src = url
+    window.previousURL ? URL.revokeObjectURL(window.previousURL) : null
+    window.previousURL = url
 }
 
-let timer;
+let timer
 
-document.getElementById("download-btn").addEventListener("click", () => {
+document.getElementById('download-btn').addEventListener('click', () => {
     const url = URL.createObjectURL(
-        new Blob([window.editor.getValue()], { type: "text/plain" })
-    );
-    const a = document.createElement("a");
-    a.href = url;
+        new Blob([window.editor.getValue()], { type: 'text/plain' }),
+    )
+    const a = document.createElement('a')
+    a.href = url
 
-    const match = editor.getValue().match(/<title>(.*?)<\/title>/);
+    const match = editor.getValue().match(/<title>(.*?)<\/title>/)
 
-    let documentTitle;
+    let documentTitle
 
-    if (match && match[1]) {
-        documentTitle = match[1];
-    } else {
-        documentTitle = "untitled";
-    }
+    match && match[1] ? documentTitle = match[1] : documentTitle = 'untitled'
 
-    a.download = documentTitle + ".html";
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
-});
+    a.download = documentTitle + '.html'
+    a.click()
+    setTimeout(() => URL.revokeObjectURL(url), 10000)
+})
 
-document.getElementById("share-btn").addEventListener("click", () => {
-    let newData = window.editor.getValue();
+document.getElementById('share-btn').addEventListener('click', () => {
+    let newData = window.editor.getValue().newData.trim()
 
-    newData = newData.trim();
-
-    const encodedNewData = btoa(newData).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+    const encodedNewData = btoa(newData)
+        .replace(/=/g, '')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
 
     if (encodedNewData.length < 2048) {
-        const currentURL = window.location.href.split("?")[0];
-        const newURL = encodedNewData ? `${currentURL}?c=${encodedNewData}` : currentURL;
-        navigator.clipboard.writeText(newURL);
+        const currentURL = window.location.href.split('?')[0]
+        const newURL =
+            encodedNewData ? `${currentURL}?c=${encodedNewData}` : currentURL
+        navigator.clipboard.writeText(newURL)
         alert(`Copied link to clipboard`)
-    } else {
-        alert(`code too long :(. max length: 2048, your length: ${encodedNewData.length}`)
-    }
 
-});
+    } else alert(`code too long :(. max length: 2048, your length: ${encodedNewData.length}`)
+})
 
-document.getElementById("edit-code-btn").addEventListener("click", () => {
-    localStorage.setItem("code", window.editor.getValue());
-    window.location = window.location.href.split("?")[0];
-});
+document.getElementById('edit-code-btn').addEventListener('click', () => {
+    localStorage.setItem('code', window.editor.getValue())
+    window.location = window.location.href.split('?')[0]
+})
 
-document.getElementById("clear-btn").addEventListener("click", () => {
-    localStorage.setItem("code", "");
-    editor.setValue("");
-    renderPreview();
-});
+document.getElementById('clear-btn').addEventListener('click', () => {
+    localStorage.setItem('code', '')
+    editor.setValue('')
+    renderPreview()
+})
