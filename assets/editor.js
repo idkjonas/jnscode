@@ -113,7 +113,7 @@ document.getElementById('download-btn').addEventListener('click', () => {
 })
 
 document.getElementById('share-btn').addEventListener('click', () => {
-    let newData = window.editor.getValue().newData.trim()
+    let newData = window.editor.getValue().trim()
 
     const encodedNewData = btoa(newData)
         .replace(/=/g, '')
