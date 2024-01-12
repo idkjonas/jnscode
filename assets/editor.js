@@ -90,9 +90,15 @@ function renderPreview() {
     document.getElementById('preview').src = url
     window.previousURL ? URL.revokeObjectURL(window.previousURL) : null
     window.previousURL = url
+    document.getElementsByTagName('title')[0].innerHTML = `${extractTitle()} • htmlr`
 }
 
 let timer
+
+function extractTitle() {
+    const regex = editor.getValue().match(/<title>(.*?)<\/title>/)
+    return regex && regex[1] ? regex[1] : 'untitled'
+}
 
 document.getElementById('download-btn').addEventListener('click', () => {
     const url = URL.createObjectURL(
@@ -101,13 +107,7 @@ document.getElementById('download-btn').addEventListener('click', () => {
     const a = document.createElement('a')
     a.href = url
 
-    const match = editor.getValue().match(/<title>(.*?)<\/title>/)
-
-    let documentTitle
-
-    match && match[1] ? documentTitle = match[1] : documentTitle = 'untitled'
-
-    a.download = documentTitle + '.html'
+    a.download = extractTitle() + '.html'
     a.click()
     setTimeout(() => URL.revokeObjectURL(url), 10000)
 })
