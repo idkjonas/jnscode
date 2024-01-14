@@ -38,65 +38,88 @@ function createEditor() {
         "inherit": true,
         "rules": [
             {
-                "foreground": "81A1C1",
+                "foreground": "85E89D",
                 "token": "metatag.html"
             },
             {
-                "foreground": "8FBCBB",
+                "foreground": "85E89D",
                 "token": "metatag.content.html"
             },
             {
-                "foreground": "81A1C1",
+                "foreground": "E2E4E8",
                 "token": "delimiter.html"
             },
             {
-                "foreground": "81A1C1",
+                "foreground": "85E89D",
                 "token": "tag.html"
             },
             {
-                "foreground": "8FBCBB",
+                "foreground": "B392F0",
                 "token": "attribute.name.html"
             },
             {
-                "foreground": "A3BE8C",
+                "foreground": "9ECBFF",
                 "token": "attribute.value.html"
             },
             {
-                "foreground": "D18770",
-                "token": "tag.css"
+                "foreground": "79B8FF",
+                "token": "delimiter.bracket.css"
             },
             {
                 "foreground": "B392F0",
+                "token": "tag.css"
+            },
+            {
+                "foreground": "79B8FF",
                 "token": "attribute.name.css"
             },
             {
-                "foreground": "9ECBFF",
+                "foreground": "79B8FF",
                 "token": "attribute.value.css"
             },
             {
-                "foreground": "81A1C1",
+                "foreground": "F87683",
+                "token": "keyword.css"
+            },
+            {
+                "foreground": "F87683",
                 "token": "keyword.js"
             },
             {
-                "foreground": "8FBCBB",
+                "foreground": "B392F0",
+                "token": "delimiter.parenthesis.js"
+            },
+            {
+                "foreground": "FFAB70",
+                "token": "delimiter.bracket.js"
+            },
+            {
+                "foreground": "79B8FF",
                 "token": "identifier.js"
             },
             {
-                "foreground": "A3BE8C",
+                "foreground": "9ECBFF",
                 "token": "string.js"
-            }
+            },
+            {
+                "foreground": "9ECBFF",
+                "token": "number.js"
+            },
 
 
         ],
         "colors": {
-            "editor.background": "#1f2937",
-            "editor.selectionBackground": "#3E4758",
-            "editor.lineHighlightBackground": "#3B4252",
-            "editorCursor.foreground": "#ffffff",
-            "editorWhitespace.foreground": "#3B4252",
-            "editorIndentGuide.background": "#6a737d",
-            "editorIndentGuide.activeBackground": "#3B4252",
-            "editor.selectionHighlightBorder": "#3B4252"
+            "editor.background": "#24292F",
+            "editor.foreground": "#E2E4E8",
+            "editor.selectionBackground": "#2A4668",
+            "editor.lineHighlightBackground": "#2B3036",
+            "editorCursor.foreground": "#E2E4E8",
+            "editorWhitespace.foreground": "#444D56",
+            "editorIndentGuide.background": "#2F363D",
+            "editorIndentGuide.activeBackground": "#444D56",
+            "editor.selectionHighlightBorder": "#2B3036",
+            "editorLineNumber.foreground": "#444D56",
+            "editorLineNumber.activeForeground": "#E2E4E8",
         }
     });
 
@@ -105,11 +128,11 @@ function createEditor() {
         "inherit": true,
         "rules": [
             {
-                "foreground": "0B7579",
+                "foreground": "23863A",
                 "token": "metatag.html"
             },
             {
-                "foreground": "0B7579",
+                "foreground": "23863A",
                 "token": "metatag.content.html"
             },
             {
@@ -117,55 +140,80 @@ function createEditor() {
                 "token": "delimiter.html"
             },
             {
-                "foreground": "0B7579",
+                "foreground": "23863A",
                 "token": "tag.html"
             },
             {
-                "foreground": "0B7579",
+                "foreground": "6F42C1",
                 "token": "attribute.name.html"
             },
             {
-                "foreground": "509546",
+                "foreground": "022F62",
                 "token": "attribute.value.html"
             },
             {
-                "foreground": "0B7579",
+                "foreground": "015CC5",
+                "token": "delimiter.bracket.css"
+            },
+            {
+                "foreground": "6F42C1",
                 "token": "tag.css"
             },
             {
-                "foreground": "0D60A5",
+                "foreground": "015CC5",
                 "token": "attribute.name.css"
             },
             {
-                "foreground": "509546",
+                "foreground": "015CC5",
                 "token": "attribute.value.css"
             },
             {
-                "foreground": "81A1C1",
+                "foreground": "D73A4A",
+                "token": "keyword.css"
+            },
+            {
+                "foreground": "D73A4A",
                 "token": "keyword.js"
             },
             {
-                "foreground": "0B7579",
+                "foreground": "6F42C1",
+                "token": "delimiter.parenthesis.js"
+            },
+            {
+                "foreground": "E36208",
+                "token": "delimiter.bracket.js"
+            },
+            {
+                "foreground": "015CC5",
                 "token": "identifier.js"
             },
             {
-                "foreground": "509546",
+                "foreground": "022F62",
                 "token": "string.js"
-            }
+            },
+            {
+                "foreground": "9ECBFF",
+                "token": "number.js"
+            },
 
 
         ],
         "colors": {
-            "editor.background": "#f1f5f9",
-            "editor.selectionBackground": "#D0DBF0",
-            "editor.lineHighlightBackground": "#e2e8f0",
-            "editorCursor.foreground": "#24292F",
-            "editorWhitespace.foreground": "#C6E7CE",
-            "editorIndentGuide.background": "#D0DBF0",
-            "editorIndentGuide.activeBackground": "#D0DBF0",
-            "editor.selectionHighlightBorder": "#D0DBF0"
+            "editor.background": "#ffffff",
+            "editor.foreground": "#24292F",
+            "editor.selectionBackground": "#DFE9FA",
+            "editor.lineHighlightBackground": "#F6F8FA",
+            "editorCursor.foreground": "#ffffff",
+            "editorWhitespace.foreground": "#D1D5D9",
+            "editorIndentGuide.background": "#F0F2F6",
+            "editorIndentGuide.activeBackground": "#D7DBDF",
+            "editor.selectionHighlightBorder": "#F6F8FA",
+            "editorLineNumber.foreground": "#BABBBC",
+            "editorLineNumber.activeForeground": "#24292F",
         }
     });
+
+
 
     window.editor = monaco.editor.create(document.getElementById('editor'), {
         language: 'html',

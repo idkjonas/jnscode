@@ -9,13 +9,12 @@
     <script src="https://unpkg.com/emmet-monaco-es/dist/emmet-monaco.min.js"></script>
     <link href="https://fonts.cdnfonts.com/css/open-runde" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- <link rel="stylesheet" href="assets/output.css" /> -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/output.css" />
     <script src="//unpkg.com/alpinejs" defer></script>
     <meta property="og:title" content="HTMLR by Jonas" />
     <meta property="og:image" content="favicon.ico" />
     <meta property="og:description" content="A HTML editing and sharing platform" />
-    <meta name="theme-color" content="#1e293b" />
+    <meta name="theme-color" content="#10b981" />
     <style>
         [x-cloak] {
             display: none
@@ -27,12 +26,12 @@
     </style>
 </head>
 
-<body x-data="{ showMobilePreview: false, enableComponentMode: false, enableTailwind: false, enableAlpine: false }"
-    class="overflow-hidden touch-manipulation bg-slate-100 dark:bg-gray-800 dark:color-white" style="font-family: 'Open Runde', sans-serif" x-data="body">
+<body x-data="{ showMobilePreview: false, enableComponentMode: false, enableTailwind: false, enableAlpine: false }" class="overflow-hidden touch-manipulation dark:bg-[#24292F] dark:color-white"
+    style="font-family: 'Open Runde', sans-serif" x-data="body">
 
     <div class="grid grid-rows-1 h-dvh lg:grid-cols-[1fr_1rem_1fr]" id="container">
 
-        <div id="outer-editor" class="grid relative bg-slate-100 dark:bg-gray-800 overflow-hidden width-screen grid-rows-[68px_1fr]">
+        <div id="outer-editor" class="grid relative bg-white dark:bg-[#24292F] overflow-hidden width-screen grid-rows-[68px_1fr]">
             <div class="flex items-center justify-between gap-2 px-4">
                 <div class="flex items-center gap-3">
                     <div class="flex items-center gap-2">
@@ -162,7 +161,7 @@
         </div>
 
         <div id="handle" style="left: 50%"
-            class="bg-slate-200 grid z-20 place-items-center dark:bg-slate-900 cursor-ew-resize w-4 h-full after:h-12 after:content-'nalls' after:block after:bg-slate-400 dark:after:bg-slate-600 after:rounded-full after:w-1">
+            class="bg-neutral-100 grid hidden lg:grid z-20 place-items-center dark:bg-[#1A1D20] cursor-ew-resize w-4 h-full after:h-12 after:content-'nalls' after:block after:bg-neutral-400 dark:after:bg-[#808386] after:rounded-full after:w-1">
         </div>
 
         <div id="outer-preview" :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
