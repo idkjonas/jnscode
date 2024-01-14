@@ -32,20 +32,149 @@ require(['vs/editor/editor.main'], function () { createEditor() })
 
 function createEditor() {
     emmetMonaco.emmetHTML(monaco)
-    var editorContainer = document.getElementById('editor')
 
-    window.editor = monaco.editor.create(editorContainer, {
+    monaco.editor.defineTheme('htmlr-dark', {
+        "base": "vs-dark",
+        "inherit": true,
+        "rules": [
+            {
+                "foreground": "81A1C1",
+                "token": "metatag.html"
+            },
+            {
+                "foreground": "8FBCBB",
+                "token": "metatag.content.html"
+            },
+            {
+                "foreground": "81A1C1",
+                "token": "delimiter.html"
+            },
+            {
+                "foreground": "81A1C1",
+                "token": "tag.html"
+            },
+            {
+                "foreground": "8FBCBB",
+                "token": "attribute.name.html"
+            },
+            {
+                "foreground": "A3BE8C",
+                "token": "attribute.value.html"
+            },
+            {
+                "foreground": "D18770",
+                "token": "tag.css"
+            },
+            {
+                "foreground": "B392F0",
+                "token": "attribute.name.css"
+            },
+            {
+                "foreground": "9ECBFF",
+                "token": "attribute.value.css"
+            },
+            {
+                "foreground": "81A1C1",
+                "token": "keyword.js"
+            },
+            {
+                "foreground": "8FBCBB",
+                "token": "identifier.js"
+            },
+            {
+                "foreground": "A3BE8C",
+                "token": "string.js"
+            }
+
+
+        ],
+        "colors": {
+            "editor.background": "#1f2937",
+            "editor.selectionBackground": "#3E4758",
+            "editor.lineHighlightBackground": "#3B4252",
+            "editorCursor.foreground": "#ffffff",
+            "editorWhitespace.foreground": "#3B4252",
+            "editorIndentGuide.background": "#6a737d",
+            "editorIndentGuide.activeBackground": "#3B4252",
+            "editor.selectionHighlightBorder": "#3B4252"
+        }
+    });
+
+    monaco.editor.defineTheme('htmlr-light', {
+        "base": "vs",
+        "inherit": true,
+        "rules": [
+            {
+                "foreground": "0B7579",
+                "token": "metatag.html"
+            },
+            {
+                "foreground": "0B7579",
+                "token": "metatag.content.html"
+            },
+            {
+                "foreground": "24292F",
+                "token": "delimiter.html"
+            },
+            {
+                "foreground": "0B7579",
+                "token": "tag.html"
+            },
+            {
+                "foreground": "0B7579",
+                "token": "attribute.name.html"
+            },
+            {
+                "foreground": "509546",
+                "token": "attribute.value.html"
+            },
+            {
+                "foreground": "0B7579",
+                "token": "tag.css"
+            },
+            {
+                "foreground": "0D60A5",
+                "token": "attribute.name.css"
+            },
+            {
+                "foreground": "509546",
+                "token": "attribute.value.css"
+            },
+            {
+                "foreground": "81A1C1",
+                "token": "keyword.js"
+            },
+            {
+                "foreground": "0B7579",
+                "token": "identifier.js"
+            },
+            {
+                "foreground": "509546",
+                "token": "string.js"
+            }
+
+
+        ],
+        "colors": {
+            "editor.background": "#f1f5f9",
+            "editor.selectionBackground": "#D0DBF0",
+            "editor.lineHighlightBackground": "#e2e8f0",
+            "editorCursor.foreground": "#24292F",
+            "editorWhitespace.foreground": "#C6E7CE",
+            "editorIndentGuide.background": "#D0DBF0",
+            "editorIndentGuide.activeBackground": "#D0DBF0",
+            "editor.selectionHighlightBorder": "#D0DBF0"
+        }
+    });
+
+    window.editor = monaco.editor.create(document.getElementById('editor'), {
         language: 'html',
         automaticLayout: true,
-        fontSize: '13px',
-        autoClosingTags: true,
-        autoClosingBrackets: true,
+        cursorBlinking: "smooth",
+        smoothScrolling: true,
+        fontSize: 13,
         minimap: { enabled: false },
-        lineNumbers: 'off',
-        glyphMargin: false,
-        folding: false,
-        lineDecorationsWidth: 20,
-        lineNumbersMinChars: 0,
+
     })
 
     if (dataParam !== null && dataParam.trim() !== '') {
@@ -61,17 +190,20 @@ function createEditor() {
     }
 
     function checkColorTheme() {
-        matchMedia('(prefers-color-scheme: dark)').matches ?
-            monaco.editor.setTheme('vs-dark')
-            :
-            monaco.editor.setTheme('vs')
+        if (matchMedia("(prefers-color-scheme: dark)").matches) {
+            monaco.editor.setTheme("htmlr-dark");
+        } else {
+            monaco.editor.setTheme("htmlr-light");
+        }
     }
 
     window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', checkColorTheme())
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+            checkColorTheme();
+        });
 
-    checkColorTheme()
+    checkColorTheme();
 }
 
 window.addEventListener('keydown', function (e) {
@@ -140,3 +272,5 @@ document.getElementById('clear-btn').addEventListener('click', () => {
     editor.setValue('')
     renderPreview()
 })
+
+
