@@ -219,7 +219,7 @@ function createEditor() {
             "editor.foreground": "#24292F",
             "editor.selectionBackground": "#DFE9FA",
             "editor.lineHighlightBackground": "#F6F8FA",
-            "editorCursor.foreground": "#ffffff",
+            "editorCursor.foreground": "#054289",
             "editorWhitespace.foreground": "#D1D5D9",
             "editorIndentGuide.background": "#F0F2F6",
             "editorIndentGuide.activeBackground": "#D7DBDF",
