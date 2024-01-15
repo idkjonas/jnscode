@@ -1,4 +1,4 @@
 # HTMLR
 Hypertext markup language renderer
 
-[try it](https://decjonas.github.io/htmlr)
+[try it](https://jnasxyz.github.io/htmlr)
