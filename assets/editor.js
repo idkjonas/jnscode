@@ -293,7 +293,6 @@ let timer
 
 function extractTitle() {
     const regex = editor.getValue().match(/<title>(.*?)<\/title>/)
-    const 
     return regex && regex[1] ? regex[1].toLowerCase().replace(" ", "-") : 'untitled'
 }
 
