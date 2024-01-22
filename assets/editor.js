@@ -293,7 +293,8 @@ let timer
 
 function extractTitle() {
     const regex = editor.getValue().match(/<title>(.*?)<\/title>/)
-    return regex && regex[1] ? regex[1] : 'untitled'
+    const 
+    return regex && regex[1] ? regex[1].toLowerCase().replace(" ", "-") : 'untitled'
 }
 
 document.getElementById('download-btn').addEventListener('click', () => {
