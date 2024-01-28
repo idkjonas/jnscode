@@ -3,7 +3,7 @@
 # htmlr
 ### Hypertext markup language renderer
 
-### htmlr has many features to make working with .html files as fast as possible
+### Features
 - Emmet support
 - Saves code to localstorage
 - Code sharing
