@@ -336,6 +336,7 @@ document.getElementById('clear-btn').addEventListener('click', () => {
     localStorage.setItem('code', '')
     editor.setValue('')
     renderPreview()
+    nToast("Cleared code")
 })
 
 
