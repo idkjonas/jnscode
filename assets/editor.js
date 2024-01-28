@@ -278,6 +278,7 @@ window.addEventListener('keydown', function (e) {
 })
 
 function renderPreview() {
+    nToast("Saved and ran code")
     localStorage.setItem('code', window.editor.getValue())
 
     const url = URL.createObjectURL(
@@ -321,9 +322,9 @@ document.getElementById('share-btn').addEventListener('click', () => {
         const newURL =
             encodedNewData ? `${currentURL}?c=${encodedNewData}` : currentURL
         navigator.clipboard.writeText(newURL)
-        alert(`Copied link to clipboard`)
+        nToast("Copied link to clipboard")
 
-    } else alert(`code too long :(. max length: 2048, your length: ${encodedNewData.length}`)
+    } else nToast(`Code too long! max length: 2048, your length: ${encodedNewData.length}`)
 })
 
 document.getElementById('edit-code-btn').addEventListener('click', () => {
