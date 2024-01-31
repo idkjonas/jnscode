@@ -7,8 +7,8 @@
 
 ### Features
 - Emmet support
-- Saves code to localstorage
+- Localstorage saving
 - Code sharing
-- Quickly download your code
+- Code downloading
 
 Use it at https://htmlr.netlify.app
