@@ -13,6 +13,8 @@ document.addEventListener("gestureend", function (e) {
     document.body.style.zoom = 0.99
 })
 
+document.getElementById("preview").src = "start.html"
+
 const dataParam = new URLSearchParams(window.location.search).get("c")
 
 let hasParam = false,
