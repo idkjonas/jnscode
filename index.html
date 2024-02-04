@@ -166,7 +166,7 @@
 
         <div id="outer-preview" :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
             class="fixed top-[68px] h-[calc(100dvh-68px)] w-full flex-grow translate-y-full overflow-hidden transition-transform duration-500 lg:relative lg:top-0 lg:h-dvh lg:translate-y-0">
-            <iframe class="w-full h-full bg-white" id="preview" referrerpolicy="noreferrer" sandbox="allow-modals allow-downloads allow-scripts allow-forms" credentialless="true"></iframe>
+            <iframe class="w-full h-full bg-white" id="preview" referrerpolicy="noreferrer" sandbox="allow-modals allow-downloads allow-scripts allow-forms" src="start.html" credentialless="true"></iframe>
         </div>
 
         <button @click="showMobilePreview = ! showMobilePreview"
