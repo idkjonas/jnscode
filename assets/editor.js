@@ -293,7 +293,7 @@ function renderPreview() {
     window.previousURL ? URL.revokeObjectURL(window.previousURL) : null
     window.previousURL = url
     document.getElementsByTagName("title")[0].innerHTML =
-        `${extractTitle()} • htmlr`
+        `${extractTitle()}`
 }
 
 let timer
@@ -301,7 +301,7 @@ let timer
 function extractTitle() {
     const regex = editor.getValue().match(/<title>(.*?)<\/title>/)
     return regex && regex[1]
-        ? regex[1].toLowerCase().replace(" ", "-")
+        ? regex[1]
         : "untitled"
 }
 
@@ -312,7 +312,7 @@ document.getElementById("download-btn").addEventListener("click", () => {
     const a = document.createElement("a")
     a.href = url
 
-    a.download = extractTitle() + ".html"
+    a.download = extractTitle().toLowerCase().replace("/ /g", "-") + ".html"
     a.click()
     setTimeout(() => URL.revokeObjectURL(url), 10000)
 })
