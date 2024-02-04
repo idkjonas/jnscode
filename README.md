@@ -3,7 +3,7 @@
 # htmlr
 ### Hypertext markup language renderer
 
-![A screenshot of htmlr](https://files.jnas.xyz/htmlr-preview.png)
+![A screenshot of htmlr](https://files.jns.gg/htmlr-preview.png)
 
 ### Features
 - Emmet support
