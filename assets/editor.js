@@ -256,7 +256,6 @@ function createEditor() {
         document.getElementById("open-clear-btn").style.display = "none"
     } else {
         editor.setValue(localStorage.getItem("code") || "")
-        renderPreview()
     }
 
     function checkColorTheme() {
