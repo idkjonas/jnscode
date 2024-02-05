@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTMLR</title>
+    <title>htmlr</title>
     <script src="https://unpkg.com/fflate@0.8.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
     <script src="https://unpkg.com/emmet-monaco-es/dist/emmet-monaco.min.js"></script>
@@ -94,14 +94,13 @@
                                 </ul>
                             </div>
                         </div>
-                            <button id="share-btn"
-                                class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-white transition-opacity bg-black rounded-md h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 pointer-events-none">
-                                    <path
-                                        d="M12 6a2 2 0 1 0-1.994-1.842L5.323 6.5a2 2 0 1 0 0 3l4.683 2.342a2 2 0 1 0 .67-1.342L5.995 8.158a2.03 2.03 0 0 0 0-.316L10.677 5.5c.353.311.816.5 1.323.5Z" />
-                                </svg>
-                                Share
-                            </button>
+                        <button id="share-btn"
+                            class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-white transition-opacity bg-black rounded-md h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 pointer-events-none">
+                                <path d="M12 6a2 2 0 1 0-1.994-1.842L5.323 6.5a2 2 0 1 0 0 3l4.683 2.342a2 2 0 1 0 .67-1.342L5.995 8.158a2.03 2.03 0 0 0 0-.316L10.677 5.5c.353.311.816.5 1.323.5Z" />
+                            </svg>
+                            Share
+                        </button>
                     </div>
                 </div>
 
@@ -164,7 +163,8 @@
 
         <div id="outer-preview" :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
             class="fixed top-[68px] h-[calc(100dvh-68px)] w-full flex-grow translate-y-full overflow-hidden transition-transform duration-500 lg:relative lg:top-0 lg:h-dvh lg:translate-y-0">
-            <iframe class="w-full h-full bg-white" id="preview" referrerpolicy="noreferrer" sandbox="allow-modals allow-downloads allow-scripts allow-forms" src="start.html" credentialless="true"></iframe>
+            <iframe class="w-full h-full bg-white" id="preview" referrerpolicy="noreferrer" sandbox="allow-modals allow-downloads allow-scripts allow-forms" src="start.html"
+                credentialless="true"></iframe>
         </div>
 
         <button @click="showMobilePreview = ! showMobilePreview"
