@@ -308,7 +308,7 @@ if (downloadBtn) {
 if (shareBtn) {
     shareBtn.addEventListener("click", () => {
         // @ts-ignore
-        let newData = windoweditor.getValue().trim();
+        let newData = window.editor.getValue().trim();
         // @ts-ignore
         const compressed = fflate.strToU8(newData);
         // @ts-ignore
