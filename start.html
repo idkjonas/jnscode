@@ -9,12 +9,26 @@
         body {
             font-family: system-ui;
             line-height: 1.5;
-            color: rgba(0, 0, 0, .5)
+            color: #222;
+            margin: 10px;
+            background: repeating-linear-gradient(45deg,
+                    #777777,
+                    #777777 10px,
+                    #888888 10px,
+                    #888888 20px);
+        }
+
+        main {
+            margin: 10rem auto;
+            padding: 1rem;
+            border: 2px solid #f59e0b;
+            background-color: #fef3c7;
         }
 
         kbd {
             background-color: #eee;
             display: inline-block;
+            color: #222;
             line-height: 1;
             padding: 3px 8px;
             border-radius: 4px;
@@ -24,10 +38,12 @@
 </head>
 
 <body>
-    <p>Welcome to htmlr!</p>
-    <p>Run some code to get started.</p>
-    <p>You can preview your markup by hitting <kbd>CTRL/CMD + S</kbd>, or by pressing the <kbd>Run</kbd> button (top right of the editor).</p>
-    <p>by jns.gg</p>
+    <main>
+        <p>Welcome to htmlr!</p>
+        <p>Run some code to get started.</p>
+        <p>You can preview your markup by hitting <kbd>CTRL/CMD + S</kbd>, or by pressing the <kbd>Run</kbd> button (top right of the editor).</p>
+        <p>- jns.gg</p>
+    </main>
 </body>
 
 </html>
