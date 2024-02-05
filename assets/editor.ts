@@ -351,7 +351,7 @@ if (shareBtn) {
 
     shareBtn.addEventListener("click", () => {
         // @ts-ignore
-        let newData: string = windoweditor.getValue().trim()
+        let newData: string = window.editor.getValue().trim()
 
         // @ts-ignore
         const compressed: Uint8Array = fflate.strToU8(newData)
