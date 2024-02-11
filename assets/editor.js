@@ -4,6 +4,7 @@
 const shareBtn = document.getElementById("share-btn")
 const editCodebtn = document.getElementById("edit-code-btn")
 const clearBtn = document.getElementById("clear-btn")
+const runOnLoad = document.getElementById("run-on-load")
 const dataParam = new URLSearchParams(window.location.search).get("c")
 
 let hasParam = false
@@ -257,6 +258,16 @@ function createEditor() {
         },
     })
 
+    runOnLoad.addEventListener("change",
+        localStorage.setItem("setting_runOnLoad", runOnLoad.checked)
+    )
+    // shitty way to convert string to bool
+    runOnLoad.checked = JSON.parse(localStorage.getItem("setting_runOnLoad"))
+
+    if (runOnLoad.checked) {
+        renderPreview()
+    }
+
     function checkColorTheme() {
         if (matchMedia("(prefers-color-scheme: dark)").matches) {
             monaco.editor.setTheme("htmlr-dark")
@@ -281,9 +292,7 @@ window.addEventListener("keydown", function (e) {
     }
 })
 
-
 function renderPreview() {
-    nToast("Saved and ran code")
     localStorage.setItem("code", window.editor.getValue())
 
     const url = URL.createObjectURL(
@@ -306,11 +315,6 @@ let timer
 function extractTitle() {
     const regex = window.editor.getValue().match(/<title>(.*?)<\/title>/)
     return regex && regex[1] ? regex[1] : "untitled"
-}
-
-if (shareBtn) {
-
-
 }
 
 function share(mode) {
@@ -361,14 +365,12 @@ function share(mode) {
 
 }
 
-
 if (editCodebtn) {
     editCodebtn.addEventListener("click", () => {
         localStorage.setItem("code", window.editor.getValue())
         location.href = location.href.split("?")[0]
     })
 }
-
 
 if (clearBtn) {
     clearBtn.addEventListener("click", () => {
@@ -377,6 +379,4 @@ if (clearBtn) {
         renderPreview()
         nToast("Cleared code")
     })
-
 }
-
