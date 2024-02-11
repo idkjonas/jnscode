@@ -360,7 +360,7 @@ function share(mode) {
         }
 
     } else {
-        nToast("Code too long! max length: 2048, your length: ${base64Compressed.length}")
+        nToast(`Code too long! max length: 2048, your length: ${base64Compressed.length}`)
     }
 
 }
