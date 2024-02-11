@@ -36,7 +36,7 @@
                     <div class="flex items-center gap-2">
                         <div x-data="{ openMenu: false }">
 
-                            <button class="bg-gray-100 hover:opacity-75 dark:text-white btn dark:bg-white/5" @click="openMenu =! openMenu" :disabled="open">
+                            <button class="bg-gray-100 hover:opacity-75 dark:text-white btn dark:bg-white/5" @click="openMenu =! openMenu" :disabled="openMenu">
                                 <h1 class="text-lg font-bold text-black dark:text-white">
                                     html<span class="text-amber-500">r</span>
                                 </h1>
@@ -161,6 +161,7 @@
                     </button>
                 </div>
             </div>
+            <div :class="{ 'brightness-50': showMobilePreview }" class="h-full transition-[filter] duration-500" id="editor"></div>
         </div>
 
         <div id="handle" style="left: 50%"
@@ -170,7 +171,8 @@
         <div id="outer-preview" :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
             class="fixed top-0 flex-grow w-full overflow-hidden transition-transform duration-300 translate-y-full h-dvh md:relative md:top-0 md:h-dvh md:translate-y-0">
             <iframe class="w-full h-full bg-white border-0" id="preview" referrerpolicy="noreferrer" sandbox="allow-modals allow-downloads allow-scripts allow-forms" src="start.html"
-                credentialless="true"></iframe>
+                credentialless="true">
+            </iframe>
         </div>
 
         <div class="fixed flex gap-px overflow-hidden rounded-full dark:text-gray-200 left-4 bottom-4">
