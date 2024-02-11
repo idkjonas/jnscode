@@ -1,4 +1,5 @@
 // htmlr.netlify.app
+// by jns.gg - 2024
 
 const downloadBtn = document.getElementById("download-btn")
 const shareBtn = document.getElementById("share-btn")
@@ -343,12 +344,28 @@ if (shareBtn) {
         console.log(base64Compressed)
 
         if (base64Compressed.length < 2048) {
+
             const currentURL = window.location.href.split("?")[0]
-            const newURL = base64Compressed
-                ? `${currentURL}?c=${base64Compressed}`
-                : currentURL
+            const newURL = base64Compressed ? `${currentURL}?c=${base64Compressed}` : currentURL
             navigator.clipboard.writeText(newURL)
-            nToast("Copied link to clipboard")
+
+            var formData = new FormData()
+            formData.append("url", newURL)
+
+            fetch("https://htmlr.jns.gg/shorten.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    nToast("Copied link to clipboard")
+                    navigator.clipboard.writeText(data.shortened_url)
+                })
+                .catch(error => {
+                    console.error("Error:", error)
+                    nToast("Error shortening URL. Please try again")
+                })
+
         } else
             nToast(
                 `Code too long! max length: 2048, your length: ${base64Compressed.length}`,
