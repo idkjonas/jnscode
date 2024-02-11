@@ -36,14 +36,14 @@
                     <div class="flex items-center gap-2">
                         <div x-data="{ open: false }">
                             <button
-                                class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-transform bg-black rounded-md size-9 h-9 hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:scale-90 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75"
+                                class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-transform bg-black rounded-md size-9 h-9 hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75"
                                 @click="open=! open" :disabled="open">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                                     <path d="M8 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM8 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM9.5 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
                                 </svg>
                             </button>
 
-                            <div class="fixed left-4 right-4 top-[3.75rem] z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black lg:left-auto lg:right-auto lg:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
+                            <div class="fixed left-4 right-4 z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black lg:left-auto lg:right-auto lg:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
                                 @click.outside="open = false" x-show="open" x-transition x-cloak>
                                 <div class="flex items-center gap-2 group">
                                     <img id="logo" src="assets/logo.svg" class="transition-transform duration-300 size-6 group-hover:animate-spin" alt="" />
@@ -55,28 +55,18 @@
                                 <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
 
                                 <ul class="flex items-center w-full gap-2">
-                                    <li>
-                                        <button id="download-btn"
-                                            class="inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-medium text-white transition-opacity bg-black rounded-md grow h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
-                                            <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 pointer-events-none">
-                                                <path
-                                                    d="M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z" />
-                                                <path
-                                                    d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z" />
-                                            </svg>
-                                            Download
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div x-data="{ open: false }">
+
+                                    <li class="w-full mb-2">
+                                        <div class="w-full" x-data="{ open: false }">
                                             <button id="open-clear-btn"
-                                                class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-transform bg-red-600 rounded-md size-9 h-9 whitespace-nowrap hover:bg-red-600/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:scale-90 disabled:opacity-50 dark:bg-red-900 dark:hover:bg-red-900/75"
-                                                @click="open = ! open" :disabled="open">
+                                                class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-white transition-opacity bg-red-500 rounded-md h-9 whitespace-nowrap hover:bg-red-500/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-red-800 dark:text-white dark:hover:bg-red-800/75"
+                                                @click=" open=! open" :disabled="open">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                                                     <path fill-rule="evenodd"
                                                         d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
                                                         clip-rule="evenodd" />
                                                 </svg>
+                                                Clear all code
                                             </button>
 
                                             <div class="absolute left-4 right-4  z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black lg:left-auto lg:right-auto lg:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
@@ -93,8 +83,6 @@
                                         </div>
                                     </li>
                                 </ul>
-
-                                <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
 
                                 <ul>
                                     <li>
@@ -119,37 +107,60 @@
                                 </ul>
                             </div>
                         </div>
-                        <button id="share-btn"
-                            class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-opacity bg-black rounded-md size-9 h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                                <path fill-rule="evenodd"
-                                    d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
-                                    clip-rule="evenodd" />
-                                <path fill-rule="evenodd"
-                                    d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
-                                    clip-rule="evenodd" />
-                            </svg>
 
-                        </button>
+                        <div class="w-full" x-data="{ open: false }">
+                            <button id="open-clear-btn"
+                                class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-white transition-opacity bg-blue-500 rounded-md h-9 whitespace-nowrap hover:bg-blue-500/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-blue-800 dark:text-white dark:hover:bg-blue-800/75"
+                                @click=" open=! open" :disabled="open">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                    <path fill-rule="evenodd"
+                                        d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Share
+                            </button>
+
+                            <div class="absolute left-4 right-4  z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black lg:left-auto lg:right-auto lg:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
+                                @click.outside="open = false" x-show="open" x-transition x-cloak>
+                                <h3 class="my-1 text-xl font-medium">Link options </h3>
+                                <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
+
+                                <button @click="open = false" onclick="share('short')"
+                                    class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-white transition-opacity bg-black rounded-md h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                                    Copy short URL
+                                </button>
+                                <p class="mb-2">
+                                    Not permanent, might expire
+                                </p>
+                                <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
+                                <button @click="open = false" onclick="share('full')"
+                                    class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-white transition-opacity bg-black rounded-md h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                                    Copy full URL
+                                </button>
+                                <p class="mb-2">
+                                    Wont expire
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div id="shared-code-notice"
-                    class="tems-center hidden whitespace-nowrap rounded-md bg-neutral-100 text-sm font-medium text-black transition-opacity focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-[#3B4046] dark:text-white">
-                    <span class="px-3 py-2">Viewing shared code</span>
 
-                    <button id="edit-code-btn"
-                        class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white transition-transform bg-black rounded-md size-9 hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:scale-90 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                <div class="flex items-center gap-2">
+
+                    <button id="shared-code-notice" id="edit-code-btn"
+                        class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-white transition-transform bg-black rounded-md h-9 hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:scale-90 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                             <path
                                 d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z" />
                             <path
                                 d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z" />
                         </svg>
+                        Edit code
                     </button>
-                </div>
-
-                <div class="flex items-center gap-2">
 
 
                     <button
@@ -175,32 +186,25 @@
                 credentialless="true"></iframe>
         </div>
 
-        <button @click="showMobilePreview = ! showMobilePreview"
-            class="fixed z-50 grid py-2 font-medium text-white bg-black rounded-full shadow-xl bottom-4 left-4 size-14 max-w-64 place-items-center hover:bg-black/75 lg:hidden dark:bg-white dark:text-black dark:hover:bg-white/75">
-            <template x-if="!showMobilePreview">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        <div class="fixed flex gap-px overflow-hidden border rounded-full text-zinc-600 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-200 border-zinc-200 bg-zinc-300 left-4 bottom-4">
+
+            <button @click="showMobilePreview = ! showMobilePreview"
+                class="z-50 flex items-center justify-center py-2 font-medium bg-white dark:bg-zinc-700 dark:hover:bg-zinc-600 w-14 h-9 max-w-64 hover:bg-zinc-100 lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" :style="`transform: rotateX(${showMobilePreview ? '180deg' : '0'})`" viewBox="0 0 16 16" fill="currentColor"
+                    class="transition-transform duration-500 size-6">
+                    <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+                        clip-rule="evenodd" />
                 </svg>
-            </template>
 
-            <template x-if="showMobilePreview">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </button>
+            <button class="z-50 flex items-center justify-center gap-1 px-4 py-2 font-medium bg-white dark:bg-zinc-700 dark:hover:bg-zinc-600 h-9 max-w-64 hover:bg-zinc-100 lg:hidden"
+                @click="renderPreview">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                    <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
                 </svg>
-            </template>
-        </button>
-
-        <button style="right: 1rem" class="fixed z-50 grid py-2 font-medium text-white rounded-full shadow-xl bg-amber-500 bottom-4 size-14 max-w-64 place-items-center hover:bg-amber-500/75 lg:hidden"
-            @click="renderPreview">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="translate-x-0.5 size-7">
-                <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
-            </svg>
-        </button>
-
-
+                Run
+            </button>
+        </div>
 
         <script src="assets/editor.js"></script>
         <script src="assets/resizeHandler.js"></script>

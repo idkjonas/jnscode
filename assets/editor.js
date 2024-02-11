@@ -1,7 +1,6 @@
 // htmlr.netlify.app
 // by jns.gg - 2024
 
-const downloadBtn = document.getElementById("download-btn")
 const shareBtn = document.getElementById("share-btn")
 const editCodebtn = document.getElementById("edit-code-btn")
 const clearBtn = document.getElementById("clear-btn")
@@ -309,45 +308,32 @@ function extractTitle() {
     return regex && regex[1] ? regex[1] : "untitled"
 }
 
-
-if (downloadBtn) {
-    downloadBtn.addEventListener("click", () => {
-        const url = URL.createObjectURL(
-            new Blob([window.editor.getValue()], { type: "text/plain" }),
-        )
-        const a = document.createElement("a")
-        a.href = url
-
-        a.download = extractTitle().toLowerCase().replace("/ /g", "-") + ".html"
-        a.click()
-        setTimeout(() => URL.revokeObjectURL(url), 10000)
-    })
-}
-
-
-
 if (shareBtn) {
 
-    shareBtn.addEventListener("click", () => {
-        let newData = window.editor.getValue().trim()
 
-        const compressed = fflate.strToU8(newData)
+}
 
-        const deflated = fflate.deflateSync(compressed)
-        const base64Compressed = btoa(String.fromCharCode.apply(null, deflated))
-            .replace(/=/g, "")
-            .replace(/\+/g, "~")
-            .replace(/\//g, "_")
+function share(mode) {
+    let newData = window.editor.getValue().trim()
 
-        console.log(compressed)
-        console.log(deflated)
-        console.log(base64Compressed)
+    const compressed = fflate.strToU8(newData)
 
-        if (base64Compressed.length < 2048) {
+    const deflated = fflate.deflateSync(compressed)
+    const base64Compressed = btoa(String.fromCharCode.apply(null, deflated))
+        .replace(/=/g, "")
+        .replace(/\+/g, "~")
+        .replace(/\//g, "_")
 
-            const currentURL = window.location.href.split("?")[0]
-            const newURL = base64Compressed ? `${currentURL}?c=${base64Compressed}` : currentURL
+    console.log(compressed)
+    console.log(deflated)
+    console.log(base64Compressed)
 
+    if (base64Compressed.length < 2048) {
+
+        const currentURL = window.location.href.split("?")[0]
+        const newURL = base64Compressed ? `${currentURL}?c=${base64Compressed}` : currentURL
+
+        if (mode === "short") {
             var formData = new FormData()
             formData.append("url", newURL)
 
@@ -357,19 +343,22 @@ if (shareBtn) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    nToast("Copied link to clipboard")
+                    nToast("Copied short link to clipboard")
                     navigator.clipboard.writeText(data.shortened_url)
                 })
                 .catch(error => {
                     console.error("Error:", error)
                     nToast("Error shortening URL. Please try again")
                 })
+        } else if (mode === "full") {
+            navigator.clipboard.writeText(newURL)
+            nToast("Copied full link to clipboard")
+        }
 
-        } else
-            nToast(
-                `Code too long! max length: 2048, your length: ${base64Compressed.length}`,
-            )
-    })
+    } else {
+        nToast("Code too long! max length: 2048, your length: ${base64Compressed.length}")
+    }
+
 }
 
 
