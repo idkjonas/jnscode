@@ -181,15 +181,14 @@
         </div>
 
         <div id="outer-preview" :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
-            class="fixed top-[68px] h-[calc(100dvh-68px)] w-full flex-grow translate-y-full overflow-hidden transition-transform duration-500 lg:relative lg:top-0 lg:h-dvh lg:translate-y-0">
+            class="fixed top-0 flex-grow w-full overflow-hidden transition-transform duration-500 translate-y-full h-dvh lg:relative lg:top-0 lg:h-dvh lg:translate-y-0">
             <iframe class="w-full h-full bg-white" id="preview" referrerpolicy="noreferrer" sandbox="allow-modals allow-downloads allow-scripts allow-forms" src="start.html"
                 credentialless="true"></iframe>
         </div>
 
         <div class="fixed flex gap-px overflow-hidden border rounded-full text-zinc-600 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-200 border-zinc-200 bg-zinc-300 left-4 bottom-4">
 
-            <button @click="showMobilePreview = ! showMobilePreview"
-                class="z-50 flex items-center justify-center py-2 font-medium bg-white dark:bg-zinc-700 dark:hover:bg-zinc-600 w-14 h-9 max-w-64 hover:bg-zinc-100 lg:hidden">
+            <button @click="showMobilePreview = ! showMobilePreview" class="z-50 flex items-center justify-center py-2 font-medium bg-white dark:bg-zinc-700 w-14 h-9 max-w-64 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" :style="`transform: rotateX(${showMobilePreview ? '180deg' : '0'})`" viewBox="0 0 16 16" fill="currentColor"
                     class="transition-transform duration-500 size-6">
                     <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
@@ -197,8 +196,7 @@
                 </svg>
 
             </button>
-            <button class="z-50 flex items-center justify-center gap-1 px-4 py-2 font-medium bg-white dark:bg-zinc-700 dark:hover:bg-zinc-600 h-9 max-w-64 hover:bg-zinc-100 lg:hidden"
-                @click="renderPreview">
+            <button class="z-50 flex items-center justify-center gap-1 px-4 py-2 font-medium bg-white dark:bg-zinc-700 h-9 max-w-64 lg:hidden" @click="renderPreview">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
                     <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
                 </svg>
