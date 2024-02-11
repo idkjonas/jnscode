@@ -328,10 +328,6 @@ function share(mode) {
         .replace(/\+/g, "~")
         .replace(/\//g, "_")
 
-    console.log(compressed)
-    console.log(deflated)
-    console.log(base64Compressed)
-
     if (base64Compressed.length < 2048) {
 
         const currentURL = window.location.href.split("?")[0]
