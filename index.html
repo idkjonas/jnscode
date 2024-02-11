@@ -43,7 +43,7 @@
                                 </svg>
                             </button>
 
-                            <div class="fixed left-4 right-4 z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
+                            <div class="fixed left-4 right-4 z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-gray-100 p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-white/10 dark:bg-gray-900 dark:text-white"
                                 @click.outside="open = false" x-show="open" x-transition x-cloak>
                                 <div class="flex items-center gap-2 group">
                                     <img id="logo" src="assets/logo.svg" class="transition-transform duration-300 size-6 group-hover:animate-spin" alt="" />
@@ -82,7 +82,7 @@
                                                 Clear all code
                                             </button>
 
-                                            <div class="absolute left-4 right-4  z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
+                                            <div class="absolute left-4 right-4  z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-gray-100 p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-white/10 dark:bg-gray-900 dark:text-white"
                                                 @click.outside="open = false" x-show="open" x-transition x-cloak>
                                                 <p class="mb-2">
                                                     Are you sure you want to your clear your
@@ -122,30 +122,30 @@
                         </div>
 
                         <div class="w-full" x-data="{ open: false }">
-                            <button id="open-clear-btn"
-                                class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-blue-500 transition-opacity bg-gray-200 rounded-md hover:bg-gray-300 dark:bg-white/5 dark:hover:bg-white/10 h-9 whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50"
+                            <button
+                                class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-blue-500 transition-opacity bg-blue-100 rounded-md hover:bg-blue-200 dark:bg-blue-500/10 dark:hover:bg-blue-500/20 h-9 whitespace-nowrap focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50"
                                 @click=" open=! open" :disabled="open">
                                 Share
                             </button>
 
-                            <div class="absolute left-4 right-4  z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-zinc-100 p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-white/10 dark:bg-zinc-900 dark:text-white"
+                            <div class="absolute left-4 right-4  z-50 w-[100%-.5rem] rounded-md border border-black/10 bg-gray-100 p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-white/10 dark:bg-gray-900 dark:text-white"
                                 @click.outside="open = false" x-show="open" x-transition x-cloak>
                                 <h3 class="my-1 text-xl font-medium">Link options </h3>
                                 <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
 
                                 <button @click="open = false" onclick="share('short')"
-                                    class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-white transition-opacity bg-black rounded-md h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                                    class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-black transition-opacity bg-gray-200 rounded-md h-9 whitespace-nowrap hover:bg-gray-300 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
                                     Copy short URL
                                 </button>
-                                <p class="mb-2">
+                                <p class="mb-2 opacity-40">
                                     Not permanent, might expire
                                 </p>
                                 <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
                                 <button @click="open = false" onclick="share('full')"
-                                    class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-white transition-opacity bg-black rounded-md h-9 whitespace-nowrap hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                                    class="inline-flex items-center justify-center gap-2 px-3 text-sm font-medium text-black transition-opacity bg-gray-200 rounded-md h-9 whitespace-nowrap hover:bg-gray-300 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:opacity-50 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
                                     Copy full URL
                                 </button>
-                                <p class="mb-2">
+                                <p class="mb-2 opacity-40">
                                     Wont expire
                                 </p>
                             </div>
@@ -157,7 +157,7 @@
                 <div class="flex items-center gap-2">
 
                     <button id="edit-code-btn"
-                        class="items-center justify-center hidden gap-2 px-3 text-sm font-medium text-white transition-transform bg-black rounded-md h-9 hover:bg-black/75 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:scale-90 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-white/75">
+                        class="flex items-center justify-center gap-2 px-3 text-sm font-medium text-black transition-transform bg-gray-200 rounded-md h-9 hover:bg-gray-300 focus-visible:outline-none focus-visible:ring disabled:pointer-events-none disabled:scale-90 disabled:opacity-50 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                             <path
                                 d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z" />
@@ -191,9 +191,9 @@
                 credentialless="true"></iframe>
         </div>
 
-        <div class="fixed flex gap-px overflow-hidden border rounded-full text-zinc-600 dark:border-zinc-600 dark:bg-zinc-600 dark:text-zinc-200 border-zinc-200 bg-zinc-300 left-4 bottom-4">
+        <div class="fixed flex gap-px overflow-hidden rounded-full dark:text-gray-200 left-4 bottom-4">
 
-            <button @click="showMobilePreview = ! showMobilePreview" class="z-50 flex items-center justify-center py-2 font-medium bg-white dark:bg-zinc-700 w-14 h-9 max-w-64 md:hidden">
+            <button @click="showMobilePreview = ! showMobilePreview" class="z-50 flex items-center justify-center py-2 font-medium bg-gray-200 dark:bg-[#2f343a] w-14 h-9 max-w-64 md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" :style="`transform: rotateX(${showMobilePreview ? '180deg' : '0'})`" viewBox="0 0 16 16" fill="currentColor"
                     class="transition-transform duration-500 size-6">
                     <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
@@ -201,7 +201,7 @@
                 </svg>
 
             </button>
-            <button class="z-50 flex items-center justify-center gap-1 px-4 py-2 font-medium bg-white dark:bg-zinc-700 h-9 max-w-64 md:hidden" @click="renderPreview">
+            <button class="z-50 flex items-center justify-center gap-1 px-4 py-2 font-medium text-white bg-amber-500 dark:bg-amber-900 h-9 max-w-64 md:hidden" @click="renderPreview">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
                     <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
                 </svg>
