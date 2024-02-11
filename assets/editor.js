@@ -69,11 +69,11 @@ function createEditor() {
         localStorage.setItem("code", decodedDataParam)
         window.editor.setValue(decodedDataParam)
 
-        var sharedCodeNotice = document.getElementById("shared-code-notice")
+        var editCodeBtn = document.getElementById("edit-code-btn")
         var openClearBtn = document.getElementById("open-clear-btn")
 
-        if (sharedCodeNotice && openClearBtn) {
-            sharedCodeNotice.style.display = "flex"
+        if (editCodeBtn && openClearBtn) {
+            editCodeBtn.style.display = "flex"
             openClearBtn.style.display = "none"
         }
 
