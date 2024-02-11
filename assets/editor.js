@@ -347,7 +347,6 @@ if (shareBtn) {
 
             const currentURL = window.location.href.split("?")[0]
             const newURL = base64Compressed ? `${currentURL}?c=${base64Compressed}` : currentURL
-            navigator.clipboard.writeText(newURL)
 
             var formData = new FormData()
             formData.append("url", newURL)
