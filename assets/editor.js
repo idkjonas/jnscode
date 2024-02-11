@@ -1,48 +1,58 @@
-"use strict";
 // htmlr.netlify.app
-// by jns.gg - 2024
-const downloadBtn = document.getElementById("download-btn");
-const shareBtn = document.getElementById("share-btn");
-const editCodebtn = document.getElementById("edit-code-btn");
-const clearBtn = document.getElementById("clear-btn");
-const dataParam = new URLSearchParams(window.location.search).get("c");
-let hasParam = false;
-let decodedDataParam;
+
+const downloadBtn = document.getElementById("download-btn")
+const shareBtn = document.getElementById("share-btn")
+const editCodebtn = document.getElementById("edit-code-btn")
+const clearBtn = document.getElementById("clear-btn")
+const dataParam = new URLSearchParams(window.location.search).get("c")
+
+let hasParam = false
+let decodedDataParam
+
 function padBase64(input) {
-    var segmentLength = 4;
-    var stringLength = input.length;
-    var diff = stringLength % segmentLength;
+    var segmentLength = 4
+    var stringLength = input.length
+    var diff = stringLength % segmentLength
+
     if (!diff) {
-        return input;
+        return input
     }
-    var padLength = segmentLength - diff;
-    var paddedStringLength = stringLength + padLength;
-    var buffer = input;
+
+    var padLength = segmentLength - diff
+    var paddedStringLength = stringLength + padLength
+    var buffer = input
+
     while (padLength--) {
-        buffer += "=";
+        buffer += "="
     }
-    return buffer.toString();
+    return buffer.toString()
 }
+
 if (dataParam !== null && dataParam.trim() !== "") {
-    hasParam = true;
-    const deflated = Uint8Array.from(atob(padBase64(dataParam).replace(/\~/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));
-    // @ts-ignore
-    const inflated = fflate.inflateSync(deflated);
-    // @ts-ignore
-    const decompressed = fflate.strFromU8(inflated);
-    decodedDataParam = decompressed;
+    hasParam = true
+
+
+    const deflated = Uint8Array.from(
+        atob(padBase64(dataParam).replace(/\~/g, "+").replace(/_/g, "/")),
+        (c) => c.charCodeAt(0),
+    )
+    const inflated = fflate.inflateSync(deflated)
+    const decompressed = fflate.strFromU8(inflated)
+
+    decodedDataParam = decompressed
 }
-// @ts-ignore
+
 require.config({
     paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.26.1/min/vs" },
-});
-// @ts-ignore
+})
 require(["vs/editor/editor.main"], function () {
-    createEditor();
-});
-let editor;
+    createEditor()
+})
+
+let editor
+
 function createEditor() {
-    // @ts-ignore
+
     window.editor = monaco.editor.create(document.getElementById("editor"), {
         language: "html",
         automaticLayout: true,
@@ -50,27 +60,27 @@ function createEditor() {
         smoothScrolling: true,
         fontSize: 13,
         minimap: { enabled: false },
-    });
-    // @ts-ignore
-    emmetMonaco.emmetHTML(monaco);
+    })
+
+    emmetMonaco.emmetHTML(monaco)
+
     if (dataParam !== null && dataParam.trim() !== "") {
-        // @ts-ignore
-        window.editor.updateOptions({ readOnly: true });
-        localStorage.setItem("code", decodedDataParam);
-        // @ts-ignore
-        window.editor.setValue(decodedDataParam);
-        var sharedCodeNotice = document.getElementById("shared-code-notice");
-        var openClearBtn = document.getElementById("open-clear-btn");
+        window.editor.updateOptions({ readOnly: true })
+        localStorage.setItem("code", decodedDataParam)
+        window.editor.setValue(decodedDataParam)
+
+        var sharedCodeNotice = document.getElementById("shared-code-notice")
+        var openClearBtn = document.getElementById("open-clear-btn")
+
         if (sharedCodeNotice && openClearBtn) {
-            sharedCodeNotice.style.display = "flex";
-            openClearBtn.style.display = "none";
+            sharedCodeNotice.style.display = "flex"
+            openClearBtn.style.display = "none"
         }
+
+    } else {
+        window.editor.setValue(localStorage.getItem("code") || "")
     }
-    else {
-        // @ts-ignore
-        window.editor.setValue(localStorage.getItem("code") || "");
-    }
-    // @ts-ignore
+
     monaco.editor.defineTheme("htmlr-dark", {
         base: "vs-dark",
         inherit: true,
@@ -157,8 +167,8 @@ function createEditor() {
             "editorLineNumber.foreground": "#444D56",
             "editorLineNumber.activeForeground": "#E2E4E8",
         },
-    });
-    // @ts-ignore
+    })
+
     monaco.editor.defineTheme("htmlr-light", {
         base: "vs",
         inherit: true,
@@ -245,106 +255,123 @@ function createEditor() {
             "editorLineNumber.foreground": "#BABBBC",
             "editorLineNumber.activeForeground": "#24292F",
         },
-    });
+    })
+
     function checkColorTheme() {
         if (matchMedia("(prefers-color-scheme: dark)").matches) {
-            // @ts-ignore
-            monaco.editor.setTheme("htmlr-dark");
-        }
-        else {
-            // @ts-ignore
-            monaco.editor.setTheme("htmlr-light");
+            monaco.editor.setTheme("htmlr-dark")
+        } else {
+            monaco.editor.setTheme("htmlr-light")
         }
     }
+
     window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", () => {
-        checkColorTheme();
-    });
-    checkColorTheme();
+            checkColorTheme()
+        })
+
+    checkColorTheme()
 }
+
 window.addEventListener("keydown", function (e) {
     if ((e.metaKey || e.ctrlKey) && e.key === "s") {
-        e.preventDefault();
-        renderPreview();
+        e.preventDefault()
+        renderPreview()
     }
-});
+})
+
+
 function renderPreview() {
-    nToast("Saved and ran code");
-    // @ts-ignore
-    localStorage.setItem("code", window.editor.getValue());
+    nToast("Saved and ran code")
+    localStorage.setItem("code", window.editor.getValue())
+
     const url = URL.createObjectURL(
-    // @ts-ignore
-    new Blob([window.editor.getValue()], { type: "text/html" }));
-    const previewElement = document.getElementById("preview");
+        new Blob([window.editor.getValue()], { type: "text/html" }),
+    )
+    const previewElement = document.getElementById("preview")
+
     if (previewElement) {
-        previewElement.setAttribute("src", url);
+        previewElement.setAttribute("src", url)
     }
-    // @ts-ignore
-    window.previousURL ? URL.revokeObjectURL(window.previousURL) : null;
-    // @ts-ignore
-    window.previousURL = url;
+
+    window.previousURL ? URL.revokeObjectURL(window.previousURL) : null
+    window.previousURL = url
     document.getElementsByTagName("title")[0].innerHTML =
-        `${extractTitle()}`;
+        `${extractTitle()}`
 }
-let timer;
+
+let timer
+
 function extractTitle() {
-    // @ts-ignore
-    const regex = window.editor.getValue().match(/<title>(.*?)<\/title>/);
-    return regex && regex[1] ? regex[1] : "untitled";
+    const regex = window.editor.getValue().match(/<title>(.*?)<\/title>/)
+    return regex && regex[1] ? regex[1] : "untitled"
 }
+
+
 if (downloadBtn) {
     downloadBtn.addEventListener("click", () => {
         const url = URL.createObjectURL(
-        // @ts-ignore
-        new Blob([window.editor.getValue()], { type: "text/plain" }));
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = extractTitle().toLowerCase().replace("/ /g", "-") + ".html";
-        a.click();
-        setTimeout(() => URL.revokeObjectURL(url), 10000);
-    });
+            new Blob([window.editor.getValue()], { type: "text/plain" }),
+        )
+        const a = document.createElement("a")
+        a.href = url
+
+        a.download = extractTitle().toLowerCase().replace("/ /g", "-") + ".html"
+        a.click()
+        setTimeout(() => URL.revokeObjectURL(url), 10000)
+    })
 }
+
+
+
 if (shareBtn) {
+
     shareBtn.addEventListener("click", () => {
-        // @ts-ignore
-        let newData = window.editor.getValue().trim();
-        // @ts-ignore
-        const compressed = fflate.strToU8(newData);
-        // @ts-ignore
-        const deflated = fflate.deflateSync(compressed);
+        let newData = window.editor.getValue().trim()
+
+        const compressed = fflate.strToU8(newData)
+
+        const deflated = fflate.deflateSync(compressed)
         const base64Compressed = btoa(String.fromCharCode.apply(null, deflated))
             .replace(/=/g, "")
             .replace(/\+/g, "~")
-            .replace(/\//g, "_");
-        console.log(compressed);
-        console.log(deflated);
-        console.log(base64Compressed);
+            .replace(/\//g, "_")
+
+        console.log(compressed)
+        console.log(deflated)
+        console.log(base64Compressed)
+
         if (base64Compressed.length < 2048) {
-            const currentURL = window.location.href.split("?")[0];
+            const currentURL = window.location.href.split("?")[0]
             const newURL = base64Compressed
                 ? `${currentURL}?c=${base64Compressed}`
-                : currentURL;
-            navigator.clipboard.writeText(newURL);
-            nToast("Copied link to clipboard");
-        }
-        else
-            nToast(`Code too long! max length: 2048, your length: ${base64Compressed.length}`);
-    });
+                : currentURL
+            navigator.clipboard.writeText(newURL)
+            nToast("Copied link to clipboard")
+        } else
+            nToast(
+                `Code too long! max length: 2048, your length: ${base64Compressed.length}`,
+            )
+    })
 }
+
+
 if (editCodebtn) {
     editCodebtn.addEventListener("click", () => {
-        // @ts-ignore
-        localStorage.setItem("code", window.editor.getValue());
-        location.href = location.href.split("?")[0];
-    });
+        localStorage.setItem("code", window.editor.getValue())
+        location.href = location.href.split("?")[0]
+    })
 }
+
+
 if (clearBtn) {
     clearBtn.addEventListener("click", () => {
-        localStorage.setItem("code", "");
-        // @ts-ignore
-        window.editor.setValue("");
-        renderPreview();
-        nToast("Cleared code");
-    });
+        localStorage.setItem("code", "")
+        window.editor.setValue("")
+        renderPreview()
+        nToast("Cleared code")
+    })
+
 }
+
