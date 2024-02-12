@@ -6,7 +6,7 @@ import prettierPluginHtml from "https://unpkg.com/prettier@3.2.5/plugins/html.mj
 const formatBtn = document.getElementById("format-btn")
 
 formatBtn.addEventListener("click", async () => {
-
+    window.editor.getAction("editor.action.formatDocument").run()
     window.editor.executeEdits("", [{
         range: window.editor.getModel().getFullModelRange(),
         text: await prettier.format(window.editor.getValue(), {
