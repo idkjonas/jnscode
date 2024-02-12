@@ -7,15 +7,14 @@ const formatBtn = document.getElementById("format-btn")
 
 formatBtn.addEventListener("click", async () => {
 
-
     window.editor.executeEdits("", [{
         range: window.editor.getModel().getFullModelRange(),
         text: await prettier.format(window.editor.getValue(), {
             semi: false,
+            tabWidth: 4,
             parser: "html",
             plugins: [prettierPluginBabel, prettierPluginEstree, prettierPluginHtml],
-        }),
-        // forceMoveMarkers: true
+        })
     }])
 
     nToast("Successfully formatted code")
