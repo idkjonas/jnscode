@@ -239,7 +239,7 @@ function createEditor() {
                 token: "string.js",
             },
             {
-                foreground: "9ECBFF",
+                foreground: "015CC5",
                 token: "number.js",
             },
         ],
