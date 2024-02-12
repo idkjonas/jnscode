@@ -355,7 +355,7 @@ function share(mode) {
             nToast("Copied full link to clipboard")
         } else if (mode === "markdown") {
             navigator.clipboard.writeText(`[htmlr - ${extractTitle()}](${newURL})`)
-            nToast("Copied full link to clipboard")
+            nToast("Copied markdown to clipboard")
         }
 
     } else {
