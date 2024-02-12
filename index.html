@@ -36,10 +36,12 @@
                     <div class="flex items-center gap-2">
                         <div x-data="{ openMenu: false }">
 
-                            <button class="bg-gray-100 hover:opacity-75 dark:text-white btn dark:bg-white/5" @click="openMenu =! openMenu" :disabled="openMenu">
-                                <h1 class="text-lg font-bold text-black dark:text-white">
-                                    html<span class="text-amber-500">r</span>
-                                </h1>
+                            <button class="p-0 text-white bg-amber-500 dark:bg-amber-900 size-9 btn " @click="openMenu =! openMenu" :disabled="openMenu">
+                                <svg width="16" height="16" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M39.0759 167.559C25.2289 153.712 18.3054 146.789 15.7113 138.805C13.4296 131.782 13.4296 124.218 15.7113 117.195C18.3054 109.211 25.2289 102.288 39.0759 88.4408L88.4408 39.0759C102.288 25.2289 109.211 18.3054 117.195 15.7113C124.218 13.4296 131.782 13.4296 138.805 15.7113C146.789 18.3054 153.712 25.2289 167.559 39.0759L216.924 88.4408C230.771 102.288 237.695 109.211 240.289 117.195C242.57 124.218 242.57 131.782 240.289 138.805C237.695 146.789 230.771 153.712 216.924 167.559L167.559 216.924C153.712 230.771 146.789 237.695 138.805 240.289C131.782 242.57 124.218 242.57 117.195 240.289C109.211 237.695 102.288 230.771 88.4408 216.924L39.0759 167.559Z"
+                                        fill="currentColor" />
+                                </svg>
                             </button>
 
                             <div class="menu-view" @click.outside="openMenu = false" x-show="openMenu" x-transition x-cloak>
@@ -48,7 +50,7 @@
 
                                     <p>Settings</p>
 
-                                    <li class="has-[input:checked]:text-blue-500 bg-gray-100 hover:opacity-75 dark:text-white btn dark:bg-white/5">
+                                    <li class="has-[input:checked]:text-blue-500 bg-gray-100 dark:text-white btn dark:bg-white/5">
                                         <input switch type="checkbox" name="run-on-load" id="run-on-load">
                                         <label class="w-full cursor-pointer" for="run-on-load">Run on page load</label>
                                     </li>
@@ -58,60 +60,63 @@
                                 <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
 
 
-                                <ul id="hide-on-shared">
-                                    <li>
-                                        <button id="format-btn" class="w-full mb-2 bg-gray-100 dark:text-white btn dark:bg-white/5 hover:opacity-75">
-                                            Format with <img src="assets/prettier.svg" alt="prettier logo"> <span class="font-mono">Prettier</span>
-                                        </button>
-                                    </li>
-                                    <li class="w-full">
-                                        <div class="w-full" x-data="{ open: false }">
-                                            <button id="open-clear-btn" class="w-full mb-2 text-red-500 bg-red-100 hover:opacity-75 btn dark:bg-red-500/10" @click=" open=! open" :disabled="open">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                                Clear all code
+                                <div id="hide-on-shared">
+                                    <ul>
+                                        <li>
+                                            <button id="format-btn" class="w-full mb-2 bg-gray-100 dark:text-white btn dark:bg-white/5">
+                                                <img class="p-1 bg-gray-200 rounded dark:bg-white/5" src="assets/prettier.svg" alt="prettier logo">
+                                                Format with Prettier
                                             </button>
-                                            <div class="menu-view" @click.outside="open = false" x-show="open" x-transition x-cloak>
-                                                <p class="mb-2">
-                                                    Are you sure you want to your clear your
-                                                    code?
-                                                </p>
-                                                <button id="clear-btn" @click="openMenu = false, open = false" class="w-full text-red-500 bg-red-100 hover:opacity-75 btn dark:bg-red-500/10">
-                                                    Confirm
+                                        </li>
+                                        <li class="w-full">
+                                            <div class="w-full" x-data="{ open: false }">
+                                                <button id="open-clear-btn" class="w-full text-red-500 bg-red-100 btn dark:bg-red-500/10" @click=" open=! open" :disabled="open">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                    Clear all code
                                                 </button>
+                                                <div class="menu-view" @click.outside="open = false" x-show="open" x-transition x-cloak>
+                                                    <p class="mb-2">
+                                                        Are you sure you want to your clear your
+                                                        code?
+                                                    </p>
+                                                    <button id="clear-btn" @click="openMenu = false, open = false" class="w-full text-red-500 bg-red-100 btn dark:bg-red-500/10">
+                                                        Confirm
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    </ul>
+                                    <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
+                                </div>
 
-                                </ul>
+
 
                                 <ul class="grid grid-cols-1 gap-2">
-
                                     <li>
-                                        <a class="bg-gray-100 dark:text-white btn dark:bg-white/5 hover:opacity-75" href="https://github.com/decjonas/htmlr">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="w-4 h-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <g>
-                                                    <path
-                                                        d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z" />
-                                                </g>
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <span class="block mt-2">Made by
-                                            <a class="text-amber-500 hover:underline" href="https://jns.gg">Jonas</a></span>
+                                        <span class="block">htmlr by
+                                            <a class="text-amber-500 dark:text-ambre-900 hover:underline" href="https://jns.gg">Jonas</a>
+                                            -
+                                            <a href="https://github.com/jnsdotgg/htmlr" class="text-amber-500 hover:underline">
+                                                View on GitHub
+                                            </a>
+                                        </span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="w-full" x-data="{ open: false }">
-                            <button class="text-blue-500 bg-blue-100 btn dark:bg-blue-500/10 hover:opacity-75" @click=" open=! open" :disabled="open">
+                            <button class="text-blue-500 bg-blue-100 btn dark:bg-blue-500/15" @click=" open=! open" :disabled="open">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                    <path d="M7.25 10.25a.75.75 0 0 0 1.5 0V4.56l2.22 2.22a.75.75 0 1 0 1.06-1.06l-3.5-3.5a.75.75 0 0 0-1.06 0l-3.5 3.5a.75.75 0 0 0 1.06 1.06l2.22-2.22v5.69Z" />
+                                    <path
+                                        d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25v-1.5Z" />
+                                </svg>
+
                                 Share
                             </button>
 
@@ -119,34 +124,36 @@
 
                                 <ul class="grid items-center w-full grid-cols-1">
 
-                                    <li>
+                                    <li class="flex justify-between">
                                         <p>Link options</p>
                                         <p class="opacity-40">(Click to copy)</p>
                                     </li>
 
                                     <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
 
-                                    <li class="mb-2">
-                                        <p>Full URL</p>
+                                    <li class="mb-4">
                                         <div class="flex gap-2">
 
-                                            <button title="Will be long" @click="open = false" onclick="share('full')" class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5 hover:opacity-75">
-                                                Raw URL
+                                            <button title="Will be long" @click="open = false" onclick="share('full')" class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5">
+                                                Full URL
                                             </button>
                                             <button title="[htmlr - document title](full url)" @click="open = false" onclick="share('markdown')"
-                                                class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5 hover:opacity-75">
+                                                class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5">
                                                 Markdown
                                             </button>
                                         </div>
-                                        <p class="mb-2 opacity-40">
-                                            Wont expire
-                                        </p>
                                     </li>
 
                                     <li>
-                                        <button title="htmlr.jns.gg/random-code" @click="open = false" onclick="share('short')"
-                                            class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5 hover:opacity-75">
-                                            Generate short URL
+                                        <p>Short URL</p>
+
+                                        <button title="htmlr.jns.gg/random-code" @click="open = false" onclick="share('short')" class="w-full text-blue-500 bg-blue-100 btn dark:bg-blue-500/15">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                                <path fill-rule="evenodd"
+                                                    d="M5 4a.75.75 0 0 1 .738.616l.252 1.388A1.25 1.25 0 0 0 6.996 7.01l1.388.252a.75.75 0 0 1 0 1.476l-1.388.252A1.25 1.25 0 0 0 5.99 9.996l-.252 1.388a.75.75 0 0 1-1.476 0L4.01 9.996A1.25 1.25 0 0 0 3.004 8.99l-1.388-.252a.75.75 0 0 1 0-1.476l1.388-.252A1.25 1.25 0 0 0 4.01 6.004l.252-1.388A.75.75 0 0 1 5 4ZM12 1a.75.75 0 0 1 .721.544l.195.682c.118.415.443.74.858.858l.682.195a.75.75 0 0 1 0 1.442l-.682.195a1.25 1.25 0 0 0-.858.858l-.195.682a.75.75 0 0 1-1.442 0l-.195-.682a1.25 1.25 0 0 0-.858-.858l-.682-.195a.75.75 0 0 1 0-1.442l.682-.195a1.25 1.25 0 0 0 .858-.858l.195-.682A.75.75 0 0 1 12 1ZM10 11a.75.75 0 0 1 .728.568.968.968 0 0 0 .704.704.75.75 0 0 1 0 1.456.968.968 0 0 0-.704.704.75.75 0 0 1-1.456 0 .968.968 0 0 0-.704-.704.75.75 0 0 1 0-1.456.968.968 0 0 0 .704-.704A.75.75 0 0 1 10 11Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Generate short link
                                         </button>
                                         <p class="mb-2 opacity-40">
                                             Not permanent, might expire
@@ -161,18 +168,17 @@
 
                 <div class="flex items-center gap-2">
 
-                    <button id="edit-code-btn" class="hidden bg-gray-100 hover:opacity-75 dark:text-white btn dark:bg-white/5">
+                    <button id="edit-code-btn" class="hidden text-blue-500 bg-blue-100 btn dark:bg-blue-500/15">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                            <path
-                                d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z" />
-                            <path
-                                d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z" />
+                            <path fill-rule="evenodd"
+                                d="M11.013 2.513a1.75 1.75 0 0 1 2.475 2.474L6.226 12.25a2.751 2.751 0 0 1-.892.596l-2.047.848a.75.75 0 0 1-.98-.98l.848-2.047a2.75 2.75 0 0 1 .596-.892l7.262-7.261Z"
+                                clip-rule="evenodd" />
                         </svg>
-                        Edit code
+                        Edit
                     </button>
 
 
-                    <button class="hidden text-white bg-green-500 md:flex btn dark:bg-green-900 hover:opacity-75" @click="renderPreview">
+                    <button class="hidden text-white bg-green-500 md:flex btn dark:bg-green-900" @click="renderPreview">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                             <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
                         </svg>
@@ -184,7 +190,7 @@
         </div>
 
         <div id="handle" style="left: 50%"
-            class="after:content-'nalls' z-20 hidden h-full w-4 cursor-ew-resize place-items-center bg-neutral-100 after:block after:h-12 after:w-1 after:rounded-full after:bg-neutral-400 md:grid dark:bg-[#1A1D20] dark:after:bg-[#808386]">
+            class="z-20 hidden border-x border-gray-200 dark:border-white/10 h-full w-4 cursor-ew-resize place-items-center bg-gray-100 after:block after:h-12 after:w-1 after:rounded-full after:bg-gray-400 md:grid dark:bg-[#1A1D20] dark:after:bg-[#808386]">
         </div>
 
         <div id="outer-preview" :style="{ transform: window.innerWidth < 1024 ? showMobilePreview ? 'translatey(0)' : 'translatey(100%)' : '' }"
@@ -194,9 +200,9 @@
             </iframe>
         </div>
 
-        <div class="fixed flex gap-px overflow-hidden rounded-full dark:text-gray-200 left-4 bottom-4 bg-white dark:bg-[#24292F]">
+        <div class="fixed flex gap-2 dark:text-gray-200 left-4 bottom-4">
 
-            <button @click="showMobilePreview = ! showMobilePreview" class="z-50 flex items-center justify-center py-2 font-medium bg-gray-100 dark:bg-[#2f343a] w-14 h-9 max-w-64 md:hidden">
+            <button style="opacity: 1 !important;" @click="showMobilePreview = ! showMobilePreview" class="z-50 text-white bg-black btn dark:bg-white dark:text-black md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" :style="`transform: rotateX(${showMobilePreview ? '180deg' : '0'})`" viewBox="0 0 16 16" fill="currentColor"
                     class="transition-transform duration-300 size-6">
                     <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
@@ -204,7 +210,7 @@
                 </svg>
 
             </button>
-            <button class="z-50 flex items-center justify-center gap-1 px-4 py-2 font-medium text-white bg-green-500 dark:bg-green-900 h-9 max-w-64 md:hidden" @click="renderPreview">
+            <button style="opacity: 1 !important;" class="z-50 text-white bg-green-500 btn dark:bg-green-900 md:hidden" @click="renderPreview">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
                     <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
                 </svg>
