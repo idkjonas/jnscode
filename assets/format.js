@@ -11,6 +11,7 @@ formatBtn.addEventListener("click", async () => {
     window.editor.executeEdits("", [{
         range: window.editor.getModel().getFullModelRange(),
         text: await prettier.format(window.editor.getValue(), {
+            semi: false,
             parser: "html",
             plugins: [prettierPluginBabel, prettierPluginEstree, prettierPluginHtml],
         }),
