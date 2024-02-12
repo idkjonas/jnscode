@@ -71,11 +71,11 @@ function createEditor() {
         window.editor.setValue(decodedDataParam)
 
         var editCodeBtn = document.getElementById("edit-code-btn")
-        var openClearBtn = document.getElementById("open-clear-btn")
+        var hideOnShared = document.getElementById("hide-on-shared")
 
-        if (editCodeBtn && openClearBtn) {
+        if (editCodeBtn && hideOnShared) {
             editCodeBtn.style.display = "flex"
-            openClearBtn.style.display = "none"
+            hideOnShared.style.display = "none"
         }
 
     } else {

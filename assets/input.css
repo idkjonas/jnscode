@@ -4,7 +4,7 @@
 
 @layer components {
     .menu-view {
-        @apply fixed left-4 right-4 z-50 rounded-md mt-2 border border-gray-100 shadow bg-white p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-60 dark:border-[#1B1F23] dark:bg-[#24292F] dark:text-white;
+        @apply fixed left-4 right-4 z-50 rounded-md mt-2 border border-gray-100 shadow bg-white p-4 text-sm font-medium text-black md:left-auto md:right-auto md:w-72 dark:border-[#1B1F23] dark:bg-[#24292F] dark:text-white;
     }
 
     .btn {
