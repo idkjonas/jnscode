@@ -160,6 +160,10 @@ function createEditor() {
             },
             {
                 foreground: "6A737D",
+                token: "comment.content.html",
+            },
+            {
+                foreground: "6A737D",
                 token: "comment.js",
             },
             {
@@ -257,6 +261,10 @@ function createEditor() {
             {
                 foreground: "6A737D",
                 token: "comment.html",
+            },
+            {
+                foreground: "6A737D",
+                token: "comment.content.html",
             },
             {
                 foreground: "6A737D",
