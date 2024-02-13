@@ -154,6 +154,18 @@ function createEditor() {
                 foreground: "9ECBFF",
                 token: "number.js",
             },
+            {
+                foreground: "6A737D",
+                token: "comment.html",
+            },
+            {
+                foreground: "6A737D",
+                token: "comment.js",
+            },
+            {
+                foreground: "6A737D",
+                token: "comment.css"
+            }
         ],
         colors: {
             "editor.background": "#24292F",
@@ -242,6 +254,18 @@ function createEditor() {
                 foreground: "015CC5",
                 token: "number.js",
             },
+            {
+                foreground: "6A737D",
+                token: "comment.html",
+            },
+            {
+                foreground: "6A737D",
+                token: "comment.js",
+            },
+            {
+                foreground: "6A737D",
+                token: "comment.css"
+            }
         ],
         colors: {
             "editor.background": "#ffffff",
