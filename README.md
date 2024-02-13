@@ -9,6 +9,5 @@
 - Emmet support
 - Localstorage saving
 - Code sharing
-- Code downloading
 
 Use it at https://htmlr.netlify.app
