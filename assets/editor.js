@@ -1,4 +1,4 @@
-// htmlr.netlify.app
+// code.jns.gg
 // by jns.gg - 2024
 
 const shareBtn = document.getElementById("share-btn")
@@ -82,7 +82,7 @@ function createEditor() {
         window.editor.setValue(localStorage.getItem("code") || "")
     }
 
-    monaco.editor.defineTheme("htmlr-dark", {
+    monaco.editor.defineTheme("jnscode-dark", {
         base: "vs-dark",
         inherit: true,
         rules: [
@@ -186,7 +186,7 @@ function createEditor() {
         },
     })
 
-    monaco.editor.defineTheme("htmlr-light", {
+    monaco.editor.defineTheme("jnscode-light", {
         base: "vs",
         inherit: true,
         rules: [
@@ -302,9 +302,9 @@ function createEditor() {
 
     function checkColorTheme() {
         if (matchMedia("(prefers-color-scheme: dark)").matches) {
-            monaco.editor.setTheme("htmlr-dark")
+            monaco.editor.setTheme("jnscode-dark")
         } else {
-            monaco.editor.setTheme("htmlr-light")
+            monaco.editor.setTheme("jnscode-light")
         }
     }
 
@@ -369,7 +369,7 @@ function share(mode) {
             var formData = new FormData()
             formData.append("url", newURL)
 
-            fetch("https://htmlr.jns.gg/shorten.php", {
+            fetch("https://code.jns.gg/shorten.php", {
                 method: "POST",
                 body: formData
             })
