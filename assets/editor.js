@@ -376,7 +376,7 @@ function share(mode) {
                 .then(response => response.json())
                 .then(data => {
                     nToast("Copied short link to clipboard")
-                    navigator.clipboard.writeText(data.shortened_url.replace("jns.gg", "jns.gg/code")
+                    navigator.clipboard.writeText(data.shortened_url.replace("jns.gg", "jns.gg/code"))
                 })
                 .catch(error => {
                     console.error("Error:", error)
