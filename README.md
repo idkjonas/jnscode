@@ -3,9 +3,11 @@
 
 ![A screenshot of htmlr](https://files.jns.gg/htmlrpreview.png)
 
+
+
 ### Features
-- Emmet support
-- Localstorage saving
-- Code sharing
+- VSCode's Monaco editor
+- [Emmet](https://code.visualstudio.com/docs/editor/emmet) support
+- Fast code sharing without an account
 
 Use it at https://code.jns.gg
