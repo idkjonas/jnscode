@@ -369,7 +369,7 @@ function share(mode) {
             var formData = new FormData()
             formData.append("url", newURL)
 
-            fetch("https://code.jns.gg/shorten.php", {
+            fetch("https://shared.jns.gg/shorten.php", {
                 method: "POST",
                 body: formData
             })
