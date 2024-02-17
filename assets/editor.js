@@ -388,6 +388,9 @@ function share(mode) {
         } else if (mode === "markdown") {
             navigator.clipboard.writeText(`[${extractTitle()}](${newURL})`)
             nToast("Copied markdown to clipboard")
+        } else if (mode === "html") {
+            navigator.clipboard.writeText(`<a href="${newURL}">${extractTitle()}</a>`)
+            nToast("Copied HTML to clipboard")
         }
 
     } else {
