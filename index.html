@@ -140,12 +140,16 @@
                                     <div class="w-full h-px my-4 bg-black/10 dark:bg-white/10"></div>
 
                                     <li class="mb-4">
-                                        <div class="flex gap-2">
+                                        <div class="grid gap-2">
 
                                             <button title="Will be long" @click="open = false" onclick="share('full')" class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5">
                                                 Full URL
                                             </button>
                                             <button title="[document title](full url)" @click="open = false" onclick="share('markdown')"
+                                                class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5">
+                                                Markdown
+                                            </button>
+                                            <button @click="open = false" onclick="share('html')"
                                                 class="w-full bg-gray-100 dark:text-white btn dark:bg-white/5">
                                                 Markdown
                                             </button>
