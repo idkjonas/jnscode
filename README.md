@@ -9,6 +9,6 @@
 - Fast code sharing without an account
 
 ### Sharing
-You can choose to either generate a short URL (jns.gg/code/[slug]), or copy the full URL
+You can choose to either generate a short URL (jnsco.de/[slug]), or copy the full URL
 
 Use it at https://code.jns.gg
