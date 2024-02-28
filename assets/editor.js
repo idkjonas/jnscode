@@ -366,7 +366,7 @@ function share(mode) {
         const newURL = base64Compressed ? `${currentURL}?c=${base64Compressed}` : currentURL
 
         if (mode === "short") {
-            const embedLink = `https://embed.jns.gg/${encodeURIComponent(extractTitle())}?provider=JnsCode+-+Anonymous+code+sharing&providerurl=https://code.jns.gg/&color=f59e0b&image=https://code.jns.gg/assets/logo-32x32.png&imagetype=thumbnail&redirect=${newURL}`
+            const embedLink = `https://embed.jns.gg/${encodeURIComponent(extractTitle()).replace("%20", "+")}?provider=JnsCode+-+Anonymous+code+sharing&providerurl=https://code.jns.gg/&color=f59e0b&image=https://code.jns.gg/assets/logo-32x32.png&imagetype=thumbnail&redirect=${newURL}`
             var formData = new FormData()
             formData.append("url", embedLink)
 
