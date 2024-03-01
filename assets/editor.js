@@ -319,10 +319,10 @@ function createEditor() {
 
 window.addEventListener("keydown", function (e) {
     if ((e.metaKey || e.ctrlKey) && (e.key === "s" || e.key === "Enter")) {
-        e.preventDefault()
-        renderPreview()
+        e.preventDefault(); 
+        renderPreview();
     }
-})
+});
 
 function renderPreview() {
     localStorage.setItem("code", window.editor.getValue())
