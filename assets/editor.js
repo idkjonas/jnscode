@@ -61,6 +61,7 @@ function createEditor() {
         smoothScrolling: true,
         fontSize: 13,
         minimap: { enabled: false },
+        tabSize: 2
     })
 
     emmetMonaco.emmetHTML(monaco)
